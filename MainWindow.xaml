@@ -1,0 +1,45 @@
+﻿<Window x:Class="ItSerwis_Merge_v2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItSerwis_Merge_v2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280">
+    <StackPanel Margin="0,0,0,132">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+        </Grid>
+        <StackPanel Height="680" HorizontalAlignment="Left" Width="1272">
+            <StackPanel Orientation="Horizontal" Margin="490 280 0 0">
+                <Label Target="{Binding ElementName=Login}">
+                    <StackPanel Orientation="Horizontal">
+                        <AccessText Text="Login:" Width="66" FontFamily="Lucida Console"/>
+                    </StackPanel>
+                </Label>
+                <TextBox x:Name="Login" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="490 10 0 0">
+                <Label Target="{Binding ElementName=Password}">
+                    <StackPanel Orientation="Horizontal">
+                        <AccessText Text="Hasło:" Width="66" FontFamily="Lucida Console"/>
+                    </StackPanel>
+                </Label>
+                <PasswordBox x:Name="Password" Padding="3" PasswordChar="*" Background="#eee" Width="200" BorderBrush="#a99ddd" />
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="690 10 0 0">
+                <Button Click="Submit_Click" Width="80" Height="30" HorizontalAlignment="Left" Content="Zatwierdź" Background="#eee" BorderBrush="#a99ddd" FontFamily="Lucida Console"/>
+            </StackPanel>
+
+        </StackPanel>
+
+    </StackPanel>
+</Window>

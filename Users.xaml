@@ -1,0 +1,26 @@
+﻿<Window x:Class="ItSerwis_Merge_v2.Users"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItSerwis_Merge_v2"
+        mc:Ignorable="d"
+        Title="Użytkownicy" Height="350" Width="612">
+    <Grid Height="350" Width="625" Background="#fff" >
+        <TextBlock Height="32" HorizontalAlignment="Left" Margin="16,15,0,0" Name="textBlockHeading" Text="Użytkownicy" VerticalAlignment="Top" Width="310"  FontSize="20" FontStretch="Normal"/>
+        <Grid HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="620">
+            <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="14,55,0,46" Name="ListUsers" Width="575" ItemsSource="{Binding Path=LoadDataBinding}" CanUserResizeRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Id}" Header="Numer pracownika" Width="150"
+IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Imie" Width="150"
+IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Nazwisko" Width="150"
+IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=Age}" Header="Wiek" Width="100" IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+</Window>

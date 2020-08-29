@@ -1,0 +1,49 @@
+﻿<Page x:Class="ItSerwis_Merge_v2.Program"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ItSerwis_Merge_v2"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="Program">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" FontSize="16">
+            <MenuItem Header="_Program">
+                <MenuItem Header="_Ustawienia" />
+                <MenuItem Header="_Pomoc" Click="Help"/>
+
+                <Separator />
+                <MenuItem Header="_Wyloguj" />
+                <MenuItem Click="CloseWindow" Header="_Zamknij" />
+            </MenuItem>
+            <MenuItem Header="_Serwis">
+                <MenuItem Header="_Dokumenty serwisowe" />
+                <MenuItem Header="_Klienci" Click="ManageClients"/>
+                <MenuItem Header="_Skrócony dokument serwisowy" Click="CreateShortServiceDocument"/>
+
+            </MenuItem>
+            <MenuItem Header="_Dokumenty">
+                <MenuItem Header="_Paragony" />
+                <MenuItem Header="_Faktury VAT" />
+                <MenuItem Header="_Faktury VAT do paragonów" />
+                <MenuItem Header="_Spis dokumentów" />
+                <Separator />
+                <MenuItem Header="_Raport płatności" />
+            </MenuItem>
+            <MenuItem Header="_Raporty">
+                <MenuItem Header="_Raport dochodów" />
+                <MenuItem Header="Klienci" />
+                <MenuItem Header="Magazyn">
+                    <MenuItem Header="Spis artykułów" />
+                    <MenuItem Header="Stan magazynu"/>
+                </MenuItem>
+                <MenuItem Header="Obroty" />
+
+            </MenuItem>
+        </Menu>
+
+
+    </DockPanel>
+</Page>
