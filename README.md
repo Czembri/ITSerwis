@@ -31,7 +31,7 @@
 
 * Blank form with some options.
 
-![Alt main form](https://user-images.githubusercontent.com/57504533/90965148-f8146d80-e4c5-11ea-94a1-a43004569428.png?raw=true "Title")
+![Alt main form](https://user-images.githubusercontent.com/57504533/91632808-9f703380-e9e3-11ea-9b97-55051f932c7c.png?raw=true "Title")
 
 * Some reports, which I am gonna develop in the meantime
 
