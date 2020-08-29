@@ -29,15 +29,21 @@
 
 ![Alt login form](https://user-images.githubusercontent.com/57504533/90965030-b9ca7e80-e4c4-11ea-8d3f-22b4b063f337.png?raw=true "Title")
 
-
 * Blank form with some options.
 
 ![Alt main form](https://user-images.githubusercontent.com/57504533/90965148-f8146d80-e4c5-11ea-94a1-a43004569428.png?raw=true "Title")
 
 * Some reports, which I am gonna develop in the meantime
 
-![Alt customers](https://user-images.githubusercontent.com/57504533/90965180-40339000-e4c6-11ea-96d1-1852bcb48476.png?raw=true "Title")
+![Alt customers](https://user-images.githubusercontent.com/57504533/91632711-e873b800-e9e2-11ea-95c8-f4f48a431aaa.png?raw=true "Title")
 
+* Users management
+
+![Alt users](https://user-images.githubusercontent.com/57504533/91632689-c24e1800-e9e2-11ea-8c4b-b9fb181d259e.png?raw=true "Title")
+
+* Documents management
+
+![Alt ssdoc](https://user-images.githubusercontent.com/57504533/91632693-d09c3400-e9e2-11ea-8ac0-e559c0585492.png?raw=true "Title")
 
 > Table of contents
 
@@ -77,6 +83,9 @@ Blank space for updates
 ---
 
 ## Features
+
+> Complete logging added
+
 ## Usage 
 ## Documentation 
 ## Tests 
