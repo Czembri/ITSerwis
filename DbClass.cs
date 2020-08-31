@@ -101,7 +101,7 @@ namespace ItSerwis_Merge_v2
         /// <param name="devBrand"></param>
         /// <param name="devModel"></param>
         /// <param name="descr"></param>
-        public void InsertIntoServiceDocuments(string date, string customerName, string customerLastName, string customerAddress, string empName, string empLastName, int empNum, string devType, string devBrand, string devModel, string descr)
+        public void InsertIntoServiceDocuments(string date, string customerName, string customerLastName, string customerAddress, string empName, string empLastName, int empNum, string devType, string devBrand, string devModel, string descr, string documentnumber)
         {
             var checkIfEmpExists = ValidateUser(empNum);
             if (checkIfEmpExists == true)
@@ -117,7 +117,7 @@ namespace ItSerwis_Merge_v2
 
                 try
                 {
-                    var stm = $"INSERT INTO ITSERWIS.SERVICEDOCUMENT VALUES (NULL, '{date}', '{customerName}', '{customerLastName}', '{customerAddress}', '{empName}', '{empLastName}', {empNum}, '{devType}', '{devBrand}', '{devModel}', '{descr}')";
+                    var stm = $"INSERT INTO ITSERWIS.SERVICEDOCUMENT VALUES (NULL, '{date}', '{customerName}', '{customerLastName}', '{customerAddress}', '{empName}', '{empLastName}', {empNum}, '{devType}', '{devBrand}', '{devModel}', '{descr}', '{documentnumber}')";
                     var cmd = new MySqlCommand(stm, conn);
 
                     MySqlDataReader reader;
