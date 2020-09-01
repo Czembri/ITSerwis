@@ -71,7 +71,7 @@ Blank space for updates
 
 - Clone this repo to your local machine using `https://github.com/Czembri/ItSerwis_Merge.git`
 
-  <u>It's still a commetcial project!</u>
+  <u>It's still a non-commetrial project!</u>
 
 ### Setup
 
