@@ -85,6 +85,8 @@ Blank space for updates
 ## Features
 
 > Complete logging added
+> PDF script generator added
+> unique DocumentNumber generator class added + table ServiceDocument altered (DOCUMENTNUMBER COLUMN)
 
 ## Usage 
 ## Documentation 
