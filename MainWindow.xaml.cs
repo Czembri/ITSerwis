@@ -50,7 +50,7 @@ namespace ItSerwis_Merge_v2
 
             try
             {
-                checker = dbSql.checkLog(encrLogin, encrPass);
+                checker = dbSql.CheckLog(encrLogin, encrPass);
                 log.Info($"User has been found - [Login:{Login.Text}, Password:{checker}, Login:{checker}]");
             }
             catch (Exception err)

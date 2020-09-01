@@ -19,7 +19,7 @@ namespace ItSerwis_Merge_v2
         /// <param name="encryptedLog"></param>
         /// <param name="encryptedPass"></param>
         /// <returns></returns>
-        public bool checkLog(string encryptedLog, string encryptedPass)
+        public bool CheckLog(string encryptedLog, string encryptedPass)
         {
             try
             {

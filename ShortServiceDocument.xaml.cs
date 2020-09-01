@@ -20,6 +20,19 @@ namespace ItSerwis_Merge_v2
         {
             InitializeComponent();
             DisplayDate();
+            FillEmployeeData();
+        }
+
+        /// <summary>
+        /// method that fills the blanks (about employee) by data from session table
+        /// </summary>
+        private void FillEmployeeData()
+        {
+            // The purpose of this method is to fill  the blanks by data from mysql database, table -> session
+
+            empname.Text = "serwis";
+            emplastname.Text = "serwis";
+            empnumber.Text = "1";
         }
         /// <summary>
         /// method that displays date instead of hand write it
@@ -80,17 +93,8 @@ namespace ItSerwis_Merge_v2
 
             var lastDocID = Get_LastDocID();
             Random rdNum = new Random();
-            //var RandomDocumentNumber = new List<int>();
-            //var RandomDocumentChar = new List<char>();
 
-            //for (int i= 0; i <5; i++)
-            //{
-            //    int generatedRandNum = rdNum.Next();
-            //    RandomDocumentNumber.Add(generatedRandNum);
-
-            //    RandomDocumentChar.Add(chars[rdNum.Next(chars.Length-1)]);
-            //}
-
+            // variables for randomNumber string - inserted to column documentnumber
             int rand1 = rdNum.Next(1, 100);
             int rand2 = rdNum.Next(1, 100);
             int rand3 = rdNum.Next(1, 100);
@@ -116,9 +120,7 @@ namespace ItSerwis_Merge_v2
 
             var stringDocumentId = parsedDocumentID.ToString();
 
-            run_cmd("generate_pdf.py", stringDocumentId);
-
-            MessageBox.Show("Remember to create pdf generator");
+            RunCmd("D:/Temp/Itserwis/generate_pdf.py", stringDocumentId);
         }
 
         private void Close(object sender, EventArgs e)
@@ -127,11 +129,17 @@ namespace ItSerwis_Merge_v2
             this.Close();
         }
 
-        private void run_cmd(string cmd, string args)
+
+        /// <summary>
+        /// runs python script which generates pdf file for servicedocument
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="args"></param>
+        private void RunCmd(string cmd, string args)
         {
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = "cmd.exe";
-            start.Arguments = $"C:/Users/Ola/AppData/Local/Programs/Python/Python38/python.exe {cmd} {args}";
+            start.FileName = "C:/Users/czemb/AppData/Local/Programs/Python/Python38-32/python.exe";
+            start.Arguments = $"{cmd} {args}";
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.WindowStyle = ProcessWindowStyle.Hidden;
@@ -144,22 +152,17 @@ namespace ItSerwis_Merge_v2
                 }
             }
 
-
-            //Process process = new Process();
-            //ProcessStartInfo processInfo = new ProcessStartInfo();
-            //processInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            //processInfo.FileName = "cmd.exe";
-            //processInfo.Arguments = $"/C C:/Users/Ola/AppData/Local/Programs/Python/Python38/python.exe {cmd} {args}";
-            //process.StartInfo = processInfo;
-            //process.Start();
         }
+
+        /// <summary>
+        /// method that gets document id for last position which has been saved to database
+        /// </summary>
+        /// <returns></returns>
 
         private string Get_LastDocID()
         {
             string docID;
-            // Because you know that id is int so imho you don't need parameters.
             var sql = "SELECT id from servicedocument order by id desc limit 1";
-            // This is right.
             var cmd = new MySqlCommand(sql, conn);
             conn.Open();
             var reader = cmd.ExecuteReader();
