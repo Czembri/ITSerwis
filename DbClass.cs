@@ -10,6 +10,8 @@ namespace ItSerwis_Merge_v2
 {
     class DbClass
     {
+        private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //variables for mysql connection
         public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
         public MySqlConnection conn = new MySqlConnection(connectionString);
@@ -50,6 +52,84 @@ namespace ItSerwis_Merge_v2
             }
 
         }
+        /// <summary>
+        /// method that creates login session
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        public void CreateSession(string username, string password)
+        {
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+            }
+
+            Guid obj = Guid.NewGuid();
+            var sessionnumber = obj.ToString();
+            try
+            {
+                var sql = $"INSERT INTO SESSION VALUES (NULL, (SELECT USERID FROM USERLOGIN WHERE LOGINHASH='{username}' and PASSWORDHASH='{password}'), 0, '{sessionnumber}')";
+                var cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader reader;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                conn.Close();
+            } catch (Exception err)
+            {
+                MessageBox.Show($"Wystąpił błąd: {err.Message}");
+                log.Error($"Error occured: [{err.Message}]");
+            }
+            
+
+        }
+        /// <summary>
+        /// method that closes login session via update table session (status=1)
+        /// </summary>
+        public void CloseSession()
+        {
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+            }
+
+            try
+            {
+                var sql = $"Update session set status=1 where status=0";
+                var cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader reader;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+
+                conn.Close();
+            } catch (Exception err)
+            {
+                MessageBox.Show($"Wystąpił błąd: {err.Message}");
+                log.Error($"Error occured: [{err.Message}]");
+                
+            }
+      
+        }
+
         /// <summary>
         /// checks if user (who filled short service document form) exist in database
         /// </summary>
