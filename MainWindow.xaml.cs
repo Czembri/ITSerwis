@@ -48,7 +48,7 @@ namespace ItSerwis_Merge_v2
 
             DbClass dbSql = new DbClass();
 
-            log.Info("Trying to connect to database.");
+            log.Info("Trying establish the connection to database.");
 
             try
             {

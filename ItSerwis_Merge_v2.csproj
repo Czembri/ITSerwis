@@ -115,7 +115,6 @@
     </Compile>
     <Compile Include="DbClass.cs" />
     <Compile Include="LogHelper.cs" />
-    <Compile Include="PythonValidation.cs" />
     <Compile Include="ServiceClients.xaml.cs">
       <DependentUpon>ServiceClients.xaml</DependentUpon>
     </Compile>

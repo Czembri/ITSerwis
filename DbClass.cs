@@ -23,6 +23,8 @@ namespace ItSerwis_Merge_v2
         /// <returns></returns>
         public bool CheckLog(string encryptedLog, string encryptedPass)
         {
+            log.Info("Trying establish the connection to database.");
+
             try
             {
                 conn.Open();
@@ -59,6 +61,7 @@ namespace ItSerwis_Merge_v2
         /// <param name="password"></param>
         public void CreateSession(string username, string password)
         {
+            log.Info("Trying establish the connection to database.");
             try
             {
                 conn.Open();
@@ -72,7 +75,7 @@ namespace ItSerwis_Merge_v2
             var sessionnumber = obj.ToString();
             try
             {
-                var sql = $"INSERT INTO SESSION VALUES (NULL, (SELECT USERID FROM USERLOGIN WHERE LOGINHASH='{username}' and PASSWORDHASH='{password}'), 0, '{sessionnumber}')";
+                var sql = $"INSERT INTO SESSION VALUES (NULL, (SELECT FIRSTNAME FROM USERDATA WHERE ID = (SELECT USERID FROM USERLOGIN WHERE LOGINHASH='{username}' and PASSWORDHASH='{password}')), (SELECT USERID FROM USERLOGIN WHERE LOGINHASH='{username}' and PASSWORDHASH='{password}'), 0, '{sessionnumber}')";
                 var cmd = new MySqlCommand(sql, conn);
 
                 MySqlDataReader reader;
@@ -97,6 +100,7 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         public void CloseSession()
         {
+            log.Info("Trying establish the connection to database.");
             try
             {
                 conn.Open();
@@ -137,6 +141,7 @@ namespace ItSerwis_Merge_v2
         /// <returns></returns>
         private bool ValidateUser(int empID)
         {
+            log.Info("Trying establish the connection to database.");
             try
             {
                 conn.Open();
@@ -186,6 +191,7 @@ namespace ItSerwis_Merge_v2
             var checkIfEmpExists = ValidateUser(empNum);
             if (checkIfEmpExists == true)
             {
+                log.Info("Trying establish the connection to database.");
                 try
                 {
                     conn.Open();

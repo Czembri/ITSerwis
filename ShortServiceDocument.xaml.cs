@@ -23,16 +23,48 @@ namespace ItSerwis_Merge_v2
             FillEmployeeData();
         }
 
+        struct UserCredentials
+        {
+            public string docid;
+            public string firstname;
+            public string lastname;
+            
+        }
+
+        private UserCredentials GetUserCredentials()
+        {
+            string docID, firstName, lastName;
+            string sql = "SELECT id, firstname, lastname from userdata where id = (select userid from session where status=0 order by 1 desc limit 1) order by 1 desc limit 1";
+            var cmd = new MySqlCommand(sql, conn);
+            conn.Open();
+            var reader = cmd.ExecuteReader();
+            reader.Read();
+            docID = reader.GetValue(0).ToString();
+            firstName = reader.GetValue(1).ToString();
+            lastName = reader.GetValue(2).ToString();
+            var result = new UserCredentials
+            {
+                docid = docID,
+                firstname = firstName,
+                lastname = lastName
+            };
+            
+
+            conn.Close();// Close connection.
+            return result;
+        }
+
         /// <summary>
         /// method that fills the blanks (about employee) by data from session table
         /// </summary>
         private void FillEmployeeData()
         {
             // The purpose of this method is to fill  the blanks by data from mysql database, table -> session
+            var user = GetUserCredentials();
 
-            empname.Text = "serwis";
-            emplastname.Text = "serwis";
-            empnumber.Text = "1";
+            empname.Text = user.firstname;
+            emplastname.Text = user.lastname;
+            empnumber.Text = user.docid;
         }
         /// <summary>
         /// method that displays date instead of hand write it
@@ -116,13 +148,24 @@ namespace ItSerwis_Merge_v2
 
             var documentInternalID = $"ITSD/{now}/{parsedDocumentID}/{parsedEmpNum}/{randomNumber}";
 
-            InsertData(now, customerName, customerLastName, customerAddr, employeeName, employeeLastName, parsedEmpNum, deviceType, deviceBrand, deviceModel, descr, documentInternalID);
+            try
+            {
+                InsertData(now, customerName, customerLastName, customerAddr, employeeName, employeeLastName, parsedEmpNum, deviceType, deviceBrand, deviceModel, descr, documentInternalID);
+            } catch (Exception err)
+            {
+                MessageBox.Show($"Wystąpił błąd: {err.Message}");
+                log.Error($"Error while inserting data to database: [{err.Message}]");
+            } finally
+            {
+                log.Info($"Document - [{documentInternalID}] - as parsed and inserted to local database.");
+            }
+            
 
             var stringDocumentId = parsedDocumentID.ToString();
 
-            string currentDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string EditCurrentDir = currentDir.Replace(@"\", "/");
-            RunCmd($"{EditCurrentDir}/generate_pdf.py", stringDocumentId);
+            //string currentDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            //string EditCurrentDir = currentDir.Replace(@"\", "/");
+            RunCmd($"D:/Temp/Itserwis/generate_pdf.py", stringDocumentId);
         }
 
         private void Close(object sender, EventArgs e)

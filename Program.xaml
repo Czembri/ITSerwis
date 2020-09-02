@@ -34,13 +34,16 @@
             </MenuItem>
             <MenuItem Header="_Raporty">
                 <MenuItem Header="_Raport dochodów" />
-                <MenuItem Header="Klienci" />
-                <MenuItem Header="Magazyn">
-                    <MenuItem Header="Spis artykułów" />
-                    <MenuItem Header="Stan magazynu"/>
+                <MenuItem Header="_Klienci" />
+                <MenuItem Header="_Magazyn">
+                    <MenuItem Header="_Spis artykułów" />
+                    <MenuItem Header="_Stan magazynu"/>
                 </MenuItem>
-                <MenuItem Header="Obroty" />
+                <MenuItem Header="_Obroty" />
 
+            </MenuItem>
+            <MenuItem Header="_Inne">
+                <MenuItem Header="Użytkownicy" Click="ShowUsers"/>
             </MenuItem>
         </Menu>
 
