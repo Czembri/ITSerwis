@@ -22,8 +22,10 @@ namespace ItSerwis_Merge_v2
 {
     public partial class MainWindow : Window
     {
+        public bool checker;
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace ItSerwis_Merge_v2
         /// <param name="e"></param>
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            bool checker = false;
+            checker = false;
             var newForm = new Program();
 
             string encrLogin = EncryptData(Login.Text);
@@ -52,6 +54,9 @@ namespace ItSerwis_Merge_v2
             {
                 checker = dbSql.CheckLog(encrLogin, encrPass);
                 log.Info($"User has been found - [Login:{Login.Text}, Password:{checker}, Login:{checker}]");
+
+                dbSql.CreateSession(encrLogin, encrPass);
+                log.Info($"Session created: [Login:{Login.Text}, Password:{checker}, Login:{checker}]");
             }
             catch (Exception err)
             {
@@ -88,6 +93,8 @@ namespace ItSerwis_Merge_v2
 
 
         }
+
+
 
         /// <summary>
         /// method that encrypts user login and password - encrypted data is stored in database

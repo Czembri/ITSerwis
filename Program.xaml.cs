@@ -33,6 +33,12 @@ namespace ItSerwis_Merge_v2
         private void CloseWindow(object sender, EventArgs e)
         {
             log.Debug($"Invoking [{sender}].");
+            
+            DbClass session = new DbClass();
+            log.Info("Session closed");
+            log.Debug($"Invoking [CloseSession method]");
+            session.CloseSession();
+
             log.Info("Window closed.");
             Application.Current.Shutdown();
         }
@@ -79,5 +85,19 @@ namespace ItSerwis_Merge_v2
             log.Debug($"Invoking form [{ServiceShortDoc}]");
             ServiceShortDoc.Show();
         }
+
+        public void Logout(object sender, EventArgs e)
+        {
+            DbClass mySQL = new DbClass();
+            mySQL.CloseSession();
+            log.Info("Session closed.");
+            var w = Application.Current.Windows[0];
+            w.Hide();
+            log.Debug($"Invoking [{w}]");
+            MainWindow window = new MainWindow();
+            window.ShowDialog();
+        }
+
+        
     }
 }

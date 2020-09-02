@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-
+using System.Reflection;
 
 
 namespace ItSerwis_Merge_v2
@@ -120,7 +120,9 @@ namespace ItSerwis_Merge_v2
 
             var stringDocumentId = parsedDocumentID.ToString();
 
-            RunCmd("D:/Temp/Itserwis/generate_pdf.py", stringDocumentId);
+            string currentDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string EditCurrentDir = currentDir.Replace(@"\", "/");
+            RunCmd($"{EditCurrentDir}/generate_pdf.py", stringDocumentId);
         }
 
         private void Close(object sender, EventArgs e)
@@ -137,6 +139,16 @@ namespace ItSerwis_Merge_v2
         /// <param name="args"></param>
         private void RunCmd(string cmd, string args)
         {
+            //PythonValidation pythoner = new PythonValidation();
+            //string pyPath = pythoner.GetPythonPath();
+            //string EditPyPath = pyPath.Replace(@"\", "/");
+            //string AppLocal = "AppLocal";
+            
+            //if (EditPyPath.Contains(AppLocal) == true)
+            //{
+
+            //}
+
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = "C:/Users/czemb/AppData/Local/Programs/Python/Python38-32/python.exe";
             start.Arguments = $"{cmd} {args}";

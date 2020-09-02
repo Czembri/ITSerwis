@@ -15,7 +15,7 @@
                 <MenuItem Header="_Pomoc" Click="Help"/>
 
                 <Separator />
-                <MenuItem Header="_Wyloguj" />
+                <MenuItem Header="_Wyloguj" Click="Logout"/>
                 <MenuItem Click="CloseWindow" Header="_Zamknij" />
             </MenuItem>
             <MenuItem Header="_Serwis">
