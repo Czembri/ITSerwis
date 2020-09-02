@@ -1,11 +1,11 @@
 # ItSerwis_Merge
 <i>Windows application for it service store managment</i>
 
-* Store all your customers, orders, articles in one place thanks to database connection, that ensures a lot of free space
+* Store all your customers, orders, articles in one place thanks to database connection, that ensures a lot of free space :+1:
 
-* Don't be ashamed of oldfashion app look, we make apps with the vision
+* Don't be ashamed of oldfashion app look, we make apps with the vision :sparkles:
 
-* It sounds like advertisment, and it is 
+* It sounds like advertisment, and it is :sweat_smile:
 
 ## Here, you can get info about: 
 
@@ -80,15 +80,35 @@ Blank space for updates
 
 - You can also run this project using dotnet command 
 
+###### Setup warnings
+
+1. If you want to receive logs default path for itserwis.log file is [LogFilePath](D:/Temp/Itserwis/Log)
+2. For correctly working ShortServiceDocument class you need to move **generate_pdf.py** file to location: [PythonFile](D:/Temp/Itserwis/Log)
+3. Also I haven't still refined connection with python script, so you need to install manualy (via using pip): 
+  > mysql-connector
+
 ---
 
 ## Features
 
-> Complete logging added
+- [x] Complete logging added **Edit:** more complex logging system added :camel:
 
-> PDF script generator added
+- [x] PDF script generator added - actually it's .txt
 
-> unique DocumentNumber generator class added + table ServiceDocument altered (DOCUMENTNUMBER COLUMN)
+- [x] unique DocumentNumber generator class added + table ServiceDocument altered (DOCUMENTNUMBER COLUMN)
+
+- [x] Sessions system created
+
+
+## ToDo
+
+- [ ] list of the documents form with filters
+
+- [ ] improve the sessions system
+
+- [ ] design a payment system
+
+- [ ] modify and improve python script calling option
 
 ## Usage 
 ## Documentation 
