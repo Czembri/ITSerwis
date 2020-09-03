@@ -9,8 +9,9 @@ using System.Windows;
 namespace ItSerwis_Merge_v2
 {
     class DbClass
-    {
+    { 
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
 
         //variables for mysql connection
         public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
@@ -32,6 +33,7 @@ namespace ItSerwis_Merge_v2
             catch (Exception err)
             {
                 MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
             }
 
 
@@ -69,6 +71,7 @@ namespace ItSerwis_Merge_v2
             catch (Exception err)
             {
                 MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
             }
 
             Guid obj = Guid.NewGuid();
@@ -108,6 +111,7 @@ namespace ItSerwis_Merge_v2
             catch (Exception err)
             {
                 MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
             }
 
             try
@@ -149,6 +153,7 @@ namespace ItSerwis_Merge_v2
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
+                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
             }
 
 
@@ -199,6 +204,7 @@ namespace ItSerwis_Merge_v2
                 catch (Exception err)
                 {
                     MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+                    log.Error($"Could not establish database connection, the cause: [{err.Message}]");
                 }
 
                 try
@@ -219,6 +225,7 @@ namespace ItSerwis_Merge_v2
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
+                    log.Error($"Error occured: [{e.Message}]");
                 }
             }
             else
@@ -227,6 +234,81 @@ namespace ItSerwis_Merge_v2
             }
 
 
+        }
+
+        public bool ManageSessions()
+        {
+            var isClosed = false;
+            log.Info("Trying establish the connection to database.");
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
+            }
+            try
+            {
+                var stm = $"SELECT STATUS FROM SESSION WHERE STATUS=0";
+                var cmd = new MySqlCommand(stm, conn);
+
+                MySqlDataReader reader;
+
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    conn.Close();
+                    var stm2 = $"UPDATE SESSION SET STATUS=1 WHERE STATUS=0";
+                    var cmd2 = new MySqlCommand(stm2, conn);
+
+                    MySqlDataReader reader2;
+                    log.Info("Trying establish the connection to database.");
+                    try
+                    {
+                        conn.Open();
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+                        log.Error($"Could not establish database connection, the cause: [{err.Message}]");
+                    }
+                    finally
+                    {
+                        try
+                        {
+                            reader2 = cmd2.ExecuteReader();
+                            while (reader2.Read())
+                            {
+
+                            }
+                        }
+                        catch (Exception err)
+                        {
+
+                            log.Fatal($"Could not close session: [{err.Message}]");
+                        }
+                        finally
+                        {
+                            isClosed = true;
+                            conn.Close();
+                        }
+                       
+                    }
+
+                    
+                }
+                
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                log.Error($"Error occured: [{e.Message}]");
+            }
+
+            return isClosed;
         }
 
     }

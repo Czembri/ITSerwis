@@ -28,9 +28,24 @@ namespace ItSerwis_Merge_v2
         
         public MainWindow()
         {
+            
             InitializeComponent();
+            SessionManager();
         }
 
+        private void SessionManager()
+        {
+            DbClass dbsql = new DbClass();
+            var checkIfOpen = dbsql.ManageSessions();
+            if (checkIfOpen == true)
+            {
+                log.Info("Session managed properly.");
+            }
+            else
+            {
+                log.Warn("Something went wrong with session's management.");
+            }
+        }
 
         /// <summary>
         /// method for login to application -> click and validate -> takes us to main window
