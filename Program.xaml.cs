@@ -78,7 +78,7 @@ namespace ItSerwis_Merge_v2
             AllUsers.Show();
         }
 
-        private void CreateShortServiceDocument(object sender, EventArgs e)
+        public void CreateShortServiceDocument(object sender, EventArgs e)
         {
             log.Debug($"Invoking [{sender}].");
             var ServiceShortDoc = new ShortServiceDocument();
@@ -98,6 +98,15 @@ namespace ItSerwis_Merge_v2
             window.ShowDialog();
         }
 
-        
+        public void ShowServiceDocuments(object sender, EventArgs e)
+        {
+            log.Debug($"Invoking [{sender}].");
+            var ServiceDocView = new ServiceDocumentsView();
+            log.Debug($"Invoking form [{ServiceDocView}]");
+            ServiceDocView.Show();
+
+        }
+
+
     }
 }

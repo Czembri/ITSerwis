@@ -72,7 +72,7 @@ namespace ItSerwis_Merge_v2
         private void DisplayDate()
         {
             DateTime today = DateTime.Today;
-            date.Text = today.ToString("dd/MM/yyyy");
+            date.Text = today.ToString("yyyy-MM-dd");
         }
         /// <summary>
         /// method that takes all values from textblocks and calls, DbClass method to insert data
@@ -108,7 +108,7 @@ namespace ItSerwis_Merge_v2
         private void GeneratePdf(object sender, EventArgs e)
         {
             DateTime today = DateTime.Today;
-            var now = today.ToString("dd/MM/yyyy");
+            var now = today.ToString("yyyy-MM-dd");
             string chars = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
             var customerName = name.Text.ToString();
@@ -163,8 +163,7 @@ namespace ItSerwis_Merge_v2
 
             var stringDocumentId = parsedDocumentID.ToString();
 
-            //string currentDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            //string EditCurrentDir = currentDir.Replace(@"\", "/");
+
             RunCmd($"D:/Temp/Itserwis/generate_pdf.py", stringDocumentId);
         }
 
@@ -193,7 +192,7 @@ namespace ItSerwis_Merge_v2
             //}
 
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = "C:/Users/czemb/AppData/Local/Programs/Python/Python38-32/python.exe";
+            start.FileName = "E:/Program Files (x86)/Python38-32/python.exe";
             start.Arguments = $"{cmd} {args}";
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
@@ -222,9 +221,20 @@ namespace ItSerwis_Merge_v2
             conn.Open();
             var reader = cmd.ExecuteReader();
             reader.Read();
-            docID = reader.GetValue(0).ToString();
+            try
+            {
+                docID = reader.GetValue(0).ToString();
+                return docID;
+            } catch (Exception err)
+            {
+                log.Error($"Error while getting first document id: [{err.Message}]");
+            }
+            
             conn.Close();// Close connection.
-            return docID;
+
+            this.Close();
+
+            return "";
         }
     }
 }

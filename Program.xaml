@@ -19,7 +19,7 @@
                 <MenuItem Click="CloseWindow" Header="_Zamknij" />
             </MenuItem>
             <MenuItem Header="_Serwis">
-                <MenuItem Header="_Dokumenty serwisowe" />
+                <MenuItem Header="_Dokumenty serwisowe" Click="ShowServiceDocuments" />
                 <MenuItem Header="_Klienci" Click="ManageClients"/>
                 <MenuItem Header="_Skrócony dokument serwisowy" Click="CreateShortServiceDocument"/>
 

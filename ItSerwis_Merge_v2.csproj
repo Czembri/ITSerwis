@@ -114,9 +114,15 @@
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
     <Compile Include="DbClass.cs" />
+    <Compile Include="DocumentsFilter.xaml.cs">
+      <DependentUpon>DocumentsFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogHelper.cs" />
     <Compile Include="ServiceClients.xaml.cs">
       <DependentUpon>ServiceClients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceDocumentsView.xaml.cs">
+      <DependentUpon>ServiceDocumentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShortServiceDocument.xaml.cs">
       <DependentUpon>ShortServiceDocument.xaml</DependentUpon>
@@ -125,6 +131,10 @@
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Page Include="Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DocumentsFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ServiceClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServiceDocumentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
