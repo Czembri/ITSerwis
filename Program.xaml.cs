@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -105,6 +106,14 @@ namespace ItSerwis_Merge_v2
             log.Debug($"Invoking form [{ServiceDocView}]");
             ServiceDocView.Show();
 
+        }
+
+        public void Item(object sender, EventArgs e)
+        {
+            log.Debug($"Invoking [{sender}].");
+            var ItemView = new item();
+            log.Debug($"Invoking form [{ItemView}]");
+            ItemView.Show();
         }
 
 
