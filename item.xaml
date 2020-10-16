@@ -1,18 +1,18 @@
-﻿<Window x:Class="ItSerwis_Merge_v2.ServiceDocumentsView"
+﻿<Window x:Class="ItSerwis_Merge_v2.item"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ItSerwis_Merge_v2"
         mc:Ignorable="d"
-        Title="ServiceDocumentsView" Height="450" Width="800">
+        Title="item" Height="450" Width="800">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" FontSize="14">
                 <MenuItem Header="_Opcje">
-                    <MenuItem Header="_Dodaj" Click="addDocument" />
+                    <MenuItem Header="_Dodaj" />
                     <MenuItem Header="_Usuń zaznaczony"/>
-                    <MenuItem Header="_Filtruj" Click="DocumentsFilterFunc"/>
+                    <MenuItem Header="_Filtruj"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -20,12 +20,12 @@
         <Grid Height="400" Width="650" Background="#fff" >
             <TextBlock Height="32" HorizontalAlignment="Left" Margin="16,15,0,0" Name="textBlockHeading" Text="Dokumenty serwisowe" VerticalAlignment="Top" Width="310"  FontSize="18" FontStretch="Normal"/>
             <Grid HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="650">
-                <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="14,55,0,46" Name="ServiceClients" Width="625" ItemsSource="{Binding Path=LoadDataBindingDocs}" CanUserResizeRows="False">
+                <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="14,55,0,46" Name="ServiceClients" Width="625" ItemsSource="{Binding Path=LoadDataBindingsItems}" CanUserResizeRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=id}" Header="ID" Width="50" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=documentdate}" Header="Data wystawienia dokumentu" Width="170" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=clientname}" Header="Imię klienta" Width="200" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Path=clientsurename}" Header="Nazwisko klienta" Width="205" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Path=name}" Header="Nazwa" Width="200" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Path=barcode}" Header="PLU" Width="170" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Path=productindex}" Header="Numer indeksu" Width="120" IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

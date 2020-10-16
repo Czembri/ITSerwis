@@ -117,6 +117,9 @@
     <Compile Include="DocumentsFilter.xaml.cs">
       <DependentUpon>DocumentsFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="item.xaml.cs">
+      <DependentUpon>item.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LogHelper.cs" />
     <Compile Include="ServiceClients.xaml.cs">
       <DependentUpon>ServiceClients.xaml</DependentUpon>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DocumentsFilter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="item.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

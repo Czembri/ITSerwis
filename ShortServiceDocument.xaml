@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ItSerwis_Merge_v2"
         mc:Ignorable="d"
-        Title="ShortServiceDocument" Height="1000" Width="900">
-    <StackPanel>
+        Title="ShortServiceDocument" Height="900" Width="870.74">
+    <StackPanel Margin="0,0,0,96">
         <TextBlock  HorizontalAlignment="Center" Text="Skrócony dokument serwisowy" FontSize="20" FontStyle="Oblique"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Label Target="{Binding ElementName=date}">
@@ -16,7 +16,7 @@
                 </StackPanel>
             </Label>
         </StackPanel>
-        <Grid Width="800" Height="200" >
+        <Grid Width="800" Height="150" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -94,7 +94,7 @@
             </StackPanel>
 
         </Grid>
-        <Grid Width="800" Height="100">
+        <Grid Width="800" Height="80">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -135,22 +135,21 @@
             </StackPanel>
         </Grid>
 
-        <Grid Width="800" Height="300" Margin="0 80 0 0" >
+        <Grid Width="800" Height="250" Margin="0 80 0 0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <TextBlock Text="Opis usterki: " FontSize="18" Margin="10 20"/>
+                <TextBlock Text="Opis usterki: " FontSize="18" Margin="10 20" Height="31"/>
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="description" Padding="3" Background="#eee" Width="800" Height="240" BorderBrush="#a99ddd" />
+                    <TextBox x:Name="description" Padding="3" Background="#eee" Width="800" Height="213" BorderBrush="#a99ddd" />
                 </StackPanel>
             </StackPanel>
         </Grid>
-
-        <Grid Width="800" Height="120" Margin="0 80 0 0" >
+        <Grid Width="800" Height="95" Margin="46,80,27,0" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
