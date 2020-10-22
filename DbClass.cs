@@ -5,12 +5,65 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows;
+using System.Data;
+using System.IO.Packaging;
 
 namespace ItSerwis_Merge_v2
 {
+
     class DbClass
     { 
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        public void ConnectToDatabase()
+        {
+            log.Info("Trying establish the connection to database.");
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
+                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
+            }
+
+        }
+
+        public DataSet fillDataset(string loaddatabindings, string sql, string nameOfDataSet)
+        {
+            ConnectToDatabase();
+
+            MySqlDataAdapter MyDA = new MySqlDataAdapter(sql, conn);
+            DataSet ItemsData = new DataSet();
+            MyDA.Fill(ItemsData, loaddatabindings);
+            log.Debug($"{nameOfDataSet} data set created.");
+
+            CloseConnection();
+
+            return ItemsData;
+        }
+
+        public void DisposeConnection()
+        {
+            conn.Dispose();
+        }
+
+        public void CloseConnection()
+        {
+            conn.Close();
+        }
+
+        public bool IfReaderHasRows(bool rows)
+        {
+            if (rows)
+            {
+                DisposeConnection();
+                return true;
+            }
+            DisposeConnection();
+            return false;
+        }
 
 
         //variables for mysql connection
@@ -24,18 +77,9 @@ namespace ItSerwis_Merge_v2
         /// <returns></returns>
         public bool CheckLog(string encryptedLog, string encryptedPass)
         {
-            log.Info("Trying establish the connection to database.");
+            
 
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
-                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
-            }
-
+            ConnectToDatabase();
 
             var stm = $"SELECT LOGINHASH, PASSWORDHASH FROM USERLOGIN WHERE LOGINHASH='{encryptedLog}' AND PASSWORDHASH='{encryptedPass}'";
             var cmd = new MySqlCommand(stm, conn);
@@ -44,18 +88,65 @@ namespace ItSerwis_Merge_v2
 
             reader = cmd.ExecuteReader();
 
-            if (reader.HasRows)
-            {
-                conn.Dispose();
-                return true;
-            }
-            else
-            {
-                conn.Dispose();
-                return false;
-            }
+            bool checkIfLogged = IfReaderHasRows(reader.HasRows);
+
+            return checkIfLogged;
+        }
+
+        public struct UserCredentials
+        {
+            public string docid;
+            public string firstname;
+            public string lastname;
 
         }
+
+        public UserCredentials GetUserCredentials()
+        {
+            string docID, firstName, lastName;
+            string sql = "SELECT id, firstname, lastname from userdata where id = (select userid from session where status=0 order by 1 desc limit 1) order by 1 desc limit 1";
+            var cmd = new MySqlCommand(sql, conn);
+            ConnectToDatabase();
+            var reader = cmd.ExecuteReader();
+            reader.Read();
+            docID = reader.GetValue(0).ToString();
+            firstName = reader.GetValue(1).ToString();
+            lastName = reader.GetValue(2).ToString();
+            var result = new UserCredentials
+            {
+                docid = docID,
+                firstname = firstName,
+                lastname = lastName
+            };
+
+
+            CloseConnection();
+            return result;
+        }
+
+        public string GetLastDocumentID()
+        {
+            ConnectToDatabase();
+            string docID;
+            var sql = "SELECT id from servicedocument order by id desc limit 1";
+            var cmd = new MySqlCommand(sql, conn);
+            
+            var reader = cmd.ExecuteReader();
+            reader.Read();
+            try
+            {
+                docID = reader.GetValue(0).ToString();
+                return docID;
+            }
+            catch (Exception err)
+            {
+                log.Error($"Error while getting first document id: [{err.Message}]");
+            }
+
+            CloseConnection();
+            return "";
+        }
+
         /// <summary>
         /// method that creates login session
         /// </summary>
@@ -64,15 +155,7 @@ namespace ItSerwis_Merge_v2
         public void CreateSession(string username, string password)
         {
             log.Info("Trying establish the connection to database.");
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
-                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
-            }
+            ConnectToDatabase();
 
             Guid obj = Guid.NewGuid();
             var sessionnumber = obj.ToString();
@@ -89,7 +172,7 @@ namespace ItSerwis_Merge_v2
                 {
 
                 }
-                conn.Close();
+                CloseConnection();
             } catch (Exception err)
             {
                 MessageBox.Show($"Wystąpił błąd: {err.Message}");
@@ -103,16 +186,7 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         public void CloseSession()
         {
-            log.Info("Trying establish the connection to database.");
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
-                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
-            }
+            ConnectToDatabase();
 
             try
             {
@@ -128,14 +202,14 @@ namespace ItSerwis_Merge_v2
 
                 }
 
-                conn.Close();
+                
             } catch (Exception err)
             {
                 MessageBox.Show($"Wystąpił błąd: {err.Message}");
                 log.Error($"Error occured: [{err.Message}]");
                 
             }
-      
+            CloseConnection();
         }
 
         /// <summary>
@@ -145,16 +219,7 @@ namespace ItSerwis_Merge_v2
         /// <returns></returns>
         private bool ValidateUser(int empID)
         {
-            log.Info("Trying establish the connection to database.");
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
-            }
+            ConnectToDatabase();
 
 
             var stm = $"select ID from USERDATA where ID={empID}";
@@ -165,16 +230,10 @@ namespace ItSerwis_Merge_v2
 
             reader = cmd.ExecuteReader();
 
-            if (reader.HasRows)
-            {
-                conn.Dispose();
-                return true;
-            }
-            else
-            {
-                conn.Dispose();
-                return false;
-            }
+
+            bool checkIfValid = IfReaderHasRows(reader.HasRows);
+
+            return checkIfValid;
         }
 
         /// <summary>
@@ -196,16 +255,7 @@ namespace ItSerwis_Merge_v2
             var checkIfEmpExists = ValidateUser(empNum);
             if (checkIfEmpExists == true)
             {
-                log.Info("Trying establish the connection to database.");
-                try
-                {
-                    conn.Open();
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
-                    log.Error($"Could not establish database connection, the cause: [{err.Message}]");
-                }
+                ConnectToDatabase();
 
                 try
                 {
@@ -220,7 +270,7 @@ namespace ItSerwis_Merge_v2
                     {
 
                     }
-                    conn.Close();
+                    
                 }
                 catch (Exception e)
                 {
@@ -233,22 +283,15 @@ namespace ItSerwis_Merge_v2
                 MessageBox.Show($"Pracownik: {empName} {empLastName} o numerze {empNum} nie istnieje.");
             }
 
-
+            CloseConnection();
         }
 
         public bool ManageSessions()
         {
             var isClosed = false;
-            log.Info("Trying establish the connection to database.");
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
-                log.Error($"Could not establish database connection, the cause: [{err.Message}]");
-            }
+
+            ConnectToDatabase();
+
             try
             {
                 var stm = $"SELECT STATUS FROM SESSION WHERE STATUS=0";
@@ -260,20 +303,19 @@ namespace ItSerwis_Merge_v2
 
                 if (reader.HasRows)
                 {
-                    conn.Close();
+                    CloseConnection();
                     var stm2 = $"UPDATE SESSION SET STATUS=1 WHERE STATUS=0";
                     var cmd2 = new MySqlCommand(stm2, conn);
 
                     MySqlDataReader reader2;
-                    log.Info("Trying establish the connection to database.");
                     try
                     {
-                        conn.Open();
+                        ConnectToDatabase();
                     }
                     catch (Exception err)
                     {
-                        MessageBox.Show($"Błąd połączenia z bazą danych: <{err}>");
-                        log.Error($"Could not establish database connection, the cause: [{err.Message}]");
+                        MessageBox.Show($"Nie udało się zamknąć sesji: <{err}>");
+                        log.Error($"According to previous error [database connection failure], could not close session: [{err.Message}]");
                     }
                     finally
                     {
@@ -313,3 +355,4 @@ namespace ItSerwis_Merge_v2
 
     }
 }
+

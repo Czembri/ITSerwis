@@ -24,28 +24,10 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         public void ShowAllUsers()
         {
-            try
-            {
-                conn.Open();
-            } 
-            catch (Exception err)
-            {
-                log.Error($"Could not get database connection: error - [{err.Message}]");
-            }
-            
-
-
+            DbClass dbconn = new DbClass();
             string sqlSelectAll = "SELECT Id, Firstname, Lastname, Age  from USERDATA";
-
-            MySqlDataAdapter MyDA = new MySqlDataAdapter(sqlSelectAll, conn);
-            DataSet UsersData = new DataSet();
-
-            MyDA.Fill(UsersData, "LoadDataBinding");
+            DataSet UsersData = dbconn.fillDataset("LoadDataBinding", sqlSelectAll, "Users");
             ListUsers.DataContext = UsersData;
-
-            log.Debug("Users data set created.");
-
-            conn.Close();
         }
     }
 }

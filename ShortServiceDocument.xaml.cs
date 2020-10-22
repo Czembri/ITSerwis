@@ -23,44 +23,14 @@ namespace ItSerwis_Merge_v2
             FillEmployeeData();
         }
 
-        struct UserCredentials
-        {
-            public string docid;
-            public string firstname;
-            public string lastname;
-            
-        }
-
-        private UserCredentials GetUserCredentials()
-        {
-            string docID, firstName, lastName;
-            string sql = "SELECT id, firstname, lastname from userdata where id = (select userid from session where status=0 order by 1 desc limit 1) order by 1 desc limit 1";
-            var cmd = new MySqlCommand(sql, conn);
-            conn.Open();
-            var reader = cmd.ExecuteReader();
-            reader.Read();
-            docID = reader.GetValue(0).ToString();
-            firstName = reader.GetValue(1).ToString();
-            lastName = reader.GetValue(2).ToString();
-            var result = new UserCredentials
-            {
-                docid = docID,
-                firstname = firstName,
-                lastname = lastName
-            };
-            
-
-            conn.Close();// Close connection.
-            return result;
-        }
-
         /// <summary>
         /// method that fills the blanks (about employee) by data from session table
         /// </summary>
         private void FillEmployeeData()
         {
+            DbClass dbconn = new DbClass();
             // The purpose of this method is to fill  the blanks by data from mysql database, table -> session
-            var user = GetUserCredentials();
+            var user = dbconn.GetUserCredentials();
 
             empname.Text = user.firstname;
             emplastname.Text = user.lastname;
@@ -215,26 +185,16 @@ namespace ItSerwis_Merge_v2
 
         private string Get_LastDocID()
         {
-            string docID;
-            var sql = "SELECT id from servicedocument order by id desc limit 1";
-            var cmd = new MySqlCommand(sql, conn);
-            conn.Open();
-            var reader = cmd.ExecuteReader();
-            reader.Read();
-            try
+            DbClass conndb = new DbClass();
+            var lastDocId = conndb.GetLastDocumentID();
+
+            if (lastDocId != "")
             {
-                docID = reader.GetValue(0).ToString();
-                return docID;
-            } catch (Exception err)
-            {
-                log.Error($"Error while getting first document id: [{err.Message}]");
-            }
-            
-            conn.Close();// Close connection.
+                return lastDocId;
+            } 
 
             this.Close();
-
-            return "";
+            return lastDocId;
         }
     }
 }

@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
 using System.Data;
 
 namespace ItSerwis_Merge_v2
@@ -22,8 +21,6 @@ namespace ItSerwis_Merge_v2
     public partial class ServiceDocumentsView : Window
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger();
-        public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
-        public MySqlConnection conn = new MySqlConnection(connectionString);
 
         public ServiceDocumentsView()
         {
@@ -49,25 +46,10 @@ namespace ItSerwis_Merge_v2
 
         private void FillDocumentsGrid()
         {
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                log.Error($"Could not get database connection: error - [{err.Message}]");
-            }
-
-
-            string sqlSelectServiceClients = "SELECT id, documentdate, clientname, clientsurename from servicedocument";
-            MySqlDataAdapter MyDA = new MySqlDataAdapter(sqlSelectServiceClients, conn);
-            DataSet ServiceClientsData = new DataSet();
-            MyDA.Fill(ServiceClientsData, "LoadDataBindingDocs");
-            ServiceClients.DataContext = ServiceClientsData;
-
-            log.Debug("Documents data set created.");
-
-            conn.Close();
+            DbClass dbconn = new DbClass();
+            string sqlDocs = "SELECT id, documentdate, clientname, clientsurename from servicedocument";
+            DataSet docsData = dbconn.fillDataset("LoadDataBindingDocs", sqlDocs, "Documents");
+            ServiceClients.DataContext = docsData;
         }
     }
 }
