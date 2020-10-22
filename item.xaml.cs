@@ -23,8 +23,6 @@ namespace ItSerwis_Merge_v2
     public partial class item : Window
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger();
-        public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
-        public MySqlConnection conn = new MySqlConnection(connectionString);
 
         public item()
         {
@@ -34,25 +32,10 @@ namespace ItSerwis_Merge_v2
 
         private void FillItemsGrid()
         {
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                log.Error($"Could not get database connection: error - [{err.Message}]");
-            }
-
-
+            DbClass dbconn = new DbClass();
             string sqlItems = "SELECT id, name, barcode, productindex from item";
-            MySqlDataAdapter MyDA = new MySqlDataAdapter(sqlItems, conn);
-            DataSet ItemsData = new DataSet();
-            MyDA.Fill(ItemsData, "LoadDataBindingsItems");
-            ServiceClients.DataContext = ItemsData;
-
-            log.Debug("Items data set created.");
-
-            conn.Close();
+            DataSet itemsdata = dbconn.fillDataset("LoadDataBindingsItems", sqlItems, "Items");
+            ServiceClients.DataContext = itemsdata;
         }
     }
 }
