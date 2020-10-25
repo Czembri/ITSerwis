@@ -21,9 +21,6 @@ namespace ItSerwis_Merge_v2
     /// </summary>
     public partial class SerwisClients : Window
     {
-        private static readonly log4net.ILog log = LogHelper.GetLogger();
-        public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
-        public MySqlConnection conn = new MySqlConnection(connectionString);
         public SerwisClients()
         {
             InitializeComponent();
@@ -35,25 +32,10 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         private void FillServiceClientsDataGrid()
         {
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception err)
-            {
-                log.Error($"Could not get database connection: error - [{err.Message}]");
-            }
-
-
+            DbClass dbconn = new DbClass();
             string sqlSelectServiceClients = "SELECT clientname, clientsurename, clientaddress from servicedocument";
-            MySqlDataAdapter MyDA = new MySqlDataAdapter(sqlSelectServiceClients, conn);
-            DataSet ServiceClientsData = new DataSet();
-            MyDA.Fill(ServiceClientsData, "LoadDataBindingClients");
-            ServiceClients.DataContext = ServiceClientsData;
-
-            log.Debug("Clients data set created.");
-
-            conn.Close();
+            DataSet serviceClientsData = dbconn.fillDataset("LoadDataBindingClients", sqlSelectServiceClients, "Service Clients");
+            ServiceClients.DataContext = serviceClientsData;
         }
     }
 }
