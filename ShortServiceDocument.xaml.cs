@@ -13,8 +13,6 @@ namespace ItSerwis_Merge_v2
     /// </summary>
     public partial class ShortServiceDocument : Window
     {
-        public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
-        public MySqlConnection conn = new MySqlConnection(connectionString);
         private static readonly log4net.ILog log = LogHelper.GetLogger();
         public ShortServiceDocument()
         {

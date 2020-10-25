@@ -9,7 +9,7 @@
     <Grid Height="720" Width="1280" Background="#fff" >
         <TextBlock Height="32" HorizontalAlignment="Left" Margin="16,15,0,0" Name="textBlockHeading" Text="Klienci" VerticalAlignment="Top" Width="310"  FontSize="20" FontStretch="Normal"/>
         <Grid HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1000">
-            <DataGrid AutoGenerateColumns="False" Margin="20,55,-245,46" Name="clients" ItemsSource="{Binding Path=DataBindClients}" CanUserResizeRows="False">
+            <DataGrid AutoGenerateColumns="False" Margin="20,55,-245,46" Name="JustClients" ItemsSource="{Binding Path=DataBindClients}" CanUserResizeRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Path=firstname}" Header="Imię" Width="130" IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding Path=lastname}" Header="Nazwisko" Width="130" IsReadOnly="True" />
