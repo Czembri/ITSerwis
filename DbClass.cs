@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using System.Windows;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
-using System.IO.Packaging;
+using System.Windows;
 
 namespace ItSerwis_Merge_v2
 {
 
     class DbClass
-    { 
+    {
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public void ConnectToDatabase()
@@ -77,7 +72,7 @@ namespace ItSerwis_Merge_v2
         /// <returns></returns>
         public bool CheckLog(string encryptedLog, string encryptedPass)
         {
-            
+
 
             ConnectToDatabase();
 
@@ -130,7 +125,7 @@ namespace ItSerwis_Merge_v2
             string docID;
             var sql = "SELECT id from servicedocument order by id desc limit 1";
             var cmd = new MySqlCommand(sql, conn);
-            
+
             var reader = cmd.ExecuteReader();
             reader.Read();
             try
@@ -173,12 +168,13 @@ namespace ItSerwis_Merge_v2
 
                 }
                 CloseConnection();
-            } catch (Exception err)
+            }
+            catch (Exception err)
             {
                 MessageBox.Show($"Wystąpił błąd: {err.Message}");
                 log.Error($"Error occured: [{err.Message}]");
             }
-            
+
 
         }
         /// <summary>
@@ -202,12 +198,13 @@ namespace ItSerwis_Merge_v2
 
                 }
 
-                
-            } catch (Exception err)
+
+            }
+            catch (Exception err)
             {
                 MessageBox.Show($"Wystąpił błąd: {err.Message}");
                 log.Error($"Error occured: [{err.Message}]");
-                
+
             }
             CloseConnection();
         }
@@ -270,7 +267,7 @@ namespace ItSerwis_Merge_v2
                     {
 
                     }
-                    
+
                 }
                 catch (Exception e)
                 {
@@ -337,12 +334,12 @@ namespace ItSerwis_Merge_v2
                             isClosed = true;
                             conn.Close();
                         }
-                       
+
                     }
 
-                    
+
                 }
-                
+
             }
             catch (Exception e)
             {

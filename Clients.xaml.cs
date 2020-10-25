@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows;
 
 namespace ItSerwis_Merge_v2
