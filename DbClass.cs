@@ -33,9 +33,7 @@ namespace ItSerwis_Merge_v2
             DataSet ItemsData = new DataSet();
             MyDA.Fill(ItemsData, loaddatabindings);
             log.Debug($"{nameOfDataSet} data set created.");
-
             CloseConnection();
-
             return ItemsData;
         }
 
