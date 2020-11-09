@@ -1,13 +1,66 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Data;
+using System.IO.Packaging;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using System.Xml;
+using System.IO;
+using System.Reflection;
 
 namespace ItSerwis_Merge_v2
 {
 
     class DbClass
     {
+
+        // Strucure that contains database config data
+        public struct ConfigDatabase
+        {
+            public string server { get; set; }
+            public string userid { get; set; }
+            public string password { get; set; }
+            public string database { get; set; }
+
+            public void SetDatabaseConfigData()
+            {
+                string path = @"G:\Temp\Itserwis\config\database\config.xml";
+                XmlDocument xdc = new XmlDocument();
+                xdc.Load(path);
+                // login
+                var login = xdc.SelectSingleNode("root/user/login").InnerText;
+                // password
+                var pass = xdc.SelectSingleNode("root/user/password").InnerText;
+                // server
+                var server = xdc.SelectSingleNode("root/connection/server").InnerText;
+                // database
+                var db = xdc.SelectSingleNode("root/connection/database").InnerText;
+
+
+
+                this.server = server;
+                this.userid = login;
+                this.database = db;
+                this.password = pass;
+
+            }
+
+
+
+        }
+            // database connection string method
+            internal static string DatabaseConnectionString()
+        {
+            var connString = new ConfigDatabase();
+            connString.SetDatabaseConfigData();
+            string connectionString = $@"server={connString.server};userid={connString.userid};password={connString.password};database={connString.database}";
+            return connectionString;
+        }
+
+
+            // init MySQL conn
+        public MySqlConnection conn = new MySqlConnection(DatabaseConnectionString());
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public void ConnectToDatabase()
@@ -59,9 +112,9 @@ namespace ItSerwis_Merge_v2
         }
 
 
-        //variables for mysql connection
-        public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
-        public MySqlConnection conn = new MySqlConnection(connectionString);
+      
+
+
         /// <summary>
         /// validate users that login to application
         /// </summary>
