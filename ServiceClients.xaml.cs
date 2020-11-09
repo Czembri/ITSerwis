@@ -32,7 +32,7 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         private void FillServiceClientsDataGrid()
         {
-            DbClass dbconn = new DbClass();
+            Database_transactions_1 dbconn = new Database_transactions_1();
             string sqlSelectServiceClients = "SELECT clientname, clientsurename, clientaddress from servicedocument";
             DataSet serviceClientsData = dbconn.fillDataset("LoadDataBindingClients", sqlSelectServiceClients, "Service Clients");
             ServiceClients.DataContext = serviceClientsData;

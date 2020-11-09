@@ -11,46 +11,47 @@ using System.Reflection;
 
 namespace ItSerwis_Merge_v2
 {
-
-    class DbClass
+    // Strucure that contains database config data
+    public struct ConfigDatabase
     {
+        public string server { get; set; }
+        public string userid { get; set; }
+        public string password { get; set; }
+        public string database { get; set; }
 
-        // Strucure that contains database config data
-        public struct ConfigDatabase
+        public void SetDatabaseConfigData()
         {
-            public string server { get; set; }
-            public string userid { get; set; }
-            public string password { get; set; }
-            public string database { get; set; }
-
-            public void SetDatabaseConfigData()
-            {
-                string path = @"G:\Temp\Itserwis\config\database\config.xml";
-                XmlDocument xdc = new XmlDocument();
-                xdc.Load(path);
-                // login
-                var login = xdc.SelectSingleNode("root/user/login").InnerText;
-                // password
-                var pass = xdc.SelectSingleNode("root/user/password").InnerText;
-                // server
-                var server = xdc.SelectSingleNode("root/connection/server").InnerText;
-                // database
-                var db = xdc.SelectSingleNode("root/connection/database").InnerText;
+            string path = @"G:\Temp\Itserwis\config\database\config.xml";
+            XmlDocument xdc = new XmlDocument();
+            xdc.Load(path);
+            // login
+            var login = xdc.SelectSingleNode("root/user/login").InnerText;
+            // password
+            var pass = xdc.SelectSingleNode("root/user/password").InnerText;
+            // server
+            var server = xdc.SelectSingleNode("root/connection/server").InnerText;
+            // database
+            var db = xdc.SelectSingleNode("root/connection/database").InnerText;
 
 
 
-                this.server = server;
-                this.userid = login;
-                this.database = db;
-                this.password = pass;
-
-            }
-
-
+            this.server = server;
+            this.userid = login;
+            this.database = db;
+            this.password = pass;
 
         }
+
+
+
+    }
+
+    class Database_transactions_1
+    {
+
+
             // database connection string method
-            internal static string DatabaseConnectionString()
+            public static string DatabaseConnectionString()
         {
             var connString = new ConfigDatabase();
             connString.SetDatabaseConfigData();
@@ -59,11 +60,11 @@ namespace ItSerwis_Merge_v2
         }
 
 
-            // init MySQL conn
-        public MySqlConnection conn = new MySqlConnection(DatabaseConnectionString());
+        // init MySQL conn
+        internal MySqlConnection conn = new MySqlConnection(DatabaseConnectionString());
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public void ConnectToDatabase()
+        internal void ConnectToDatabase()
         {
             log.Info("Trying establish the connection to database.");
             try

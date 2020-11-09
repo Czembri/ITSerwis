@@ -113,7 +113,8 @@
     <Compile Include="Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DbClass.cs" />
+    <Compile Include="Database_transactions_1.cs" />
+    <Compile Include="Database_transactions_2.cs" />
     <Compile Include="DocumentsFilter.xaml.cs">
       <DependentUpon>DocumentsFilter.xaml</DependentUpon>
     </Compile>

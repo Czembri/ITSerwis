@@ -26,7 +26,7 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         private void FillEmployeeData()
         {
-            DbClass dbconn = new DbClass();
+            Database_transactions_1 dbconn = new Database_transactions_1();
             // The purpose of this method is to fill  the blanks by data from mysql database, table -> session
             var user = dbconn.GetUserCredentials();
 
@@ -49,7 +49,7 @@ namespace ItSerwis_Merge_v2
         /// <param name="e"></param>
         private void InsertData(string now, string customerName, string customerLastName, string customerAddr, string employeeName, string employeeLastName, int parsedEmpNum, string deviceType, string deviceBrand, string deviceModel, string descr, string documentnumber)
         {
-            DbClass db = new DbClass();
+            Database_transactions_1 db = new Database_transactions_1();
 
             try
             {
@@ -183,7 +183,7 @@ namespace ItSerwis_Merge_v2
 
         private string Get_LastDocID()
         {
-            DbClass conndb = new DbClass();
+            Database_transactions_1 conndb = new Database_transactions_1();
             var lastDocId = conndb.GetLastDocumentID();
 
             if (lastDocId != "")

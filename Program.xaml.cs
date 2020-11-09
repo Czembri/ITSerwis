@@ -35,7 +35,7 @@ namespace ItSerwis_Merge_v2
         {
             log.Debug($"Invoking [{sender}].");
             
-            DbClass session = new DbClass();
+            Database_transactions_1 session = new Database_transactions_1();
             log.Info("Session closed");
             log.Debug($"Invoking [CloseSession method]");
             session.CloseSession();
@@ -89,7 +89,7 @@ namespace ItSerwis_Merge_v2
 
         public void Logout(object sender, EventArgs e)
         {
-            DbClass mySQL = new DbClass();
+            Database_transactions_1 mySQL = new Database_transactions_1();
             mySQL.CloseSession();
             log.Info("Session closed.");
             var w = Application.Current.Windows[0];
