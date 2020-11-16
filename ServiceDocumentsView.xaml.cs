@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using System.Web.UI.WebControls;
 
 namespace ItSerwis_Merge_v2
 {
@@ -49,15 +50,26 @@ namespace ItSerwis_Merge_v2
             Database_transactions_1 dbconn = new Database_transactions_1();
             string sqlDocs = "SELECT id, documentdate, clientname, clientsurename from servicedocument";
             DataSet docsData = dbconn.fillDataset("LoadDataBindingDocs", sqlDocs, "Documents");
-            ServiceClients.DataContext = docsData;
+            ServiceDocuments.DataContext = docsData;
         }
+
+
 
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataRowView dataRowView = (DataRowView)ServiceClients.SelectedItem;
+            //DataRow dtr = ((DataRowView)(ServiceDocuments.SelectedValue)).Row;
+            //var ID = dtr[0];
+            //MessageBox.Show(Convert.ToString(ID));
+
+
+            //DataGridRow row = sender as DataGridRow;
+
+
+            DataRowView dataRowView = (DataRowView)ServiceDocuments.SelectedItem;
             int ID = Convert.ToInt32(dataRowView.Row[0]);
+
             log.Info($"Retrieving id from DataGrid: ['DataGrid':'Retrieving', 'DocumentId':{ID}]");
-            Database_transactions_2 db_conn_2 = new Database_transactions_2();
+            Database_transactions_1 db_conn_2 = new Database_transactions_1();
             var docDetails = db_conn_2.GetServiceDocumentFromDatabase(ID);
             log.Debug($"Invoking method: [{db_conn_2.GetServiceDocumentFromDatabase(ID)}] with 'ID':{ID} as an argument");
 
