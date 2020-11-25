@@ -57,23 +57,28 @@ namespace ItSerwis_Merge_v2
 
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //DataRow dtr = ((DataRowView)(ServiceDocuments.SelectedValue)).Row;
-            //var ID = dtr[0];
-            //MessageBox.Show(Convert.ToString(ID));
-
-
-            //DataGridRow row = sender as DataGridRow;
-
 
             DataRowView dataRowView = (DataRowView)ServiceDocuments.SelectedItem;
-            int ID = Convert.ToInt32(dataRowView.Row[0]);
+            try
+            {
+                int ID = Convert.ToInt32(dataRowView.Row[0]);
+                log.Info($"Retrieving id from DataGrid: ['DataGrid':'Retrieving', 'DocumentId':{ID}]");
+                Database_transactions_1 db_conn_2 = new Database_transactions_1();
+                var docDetails = db_conn_2.GetServiceDocumentFromDatabase(ID);
+                log.Debug($"Invoking method: [{db_conn_2.GetServiceDocumentFromDatabase(ID)}] with 'ID':{ID} as an argument");
 
-            log.Info($"Retrieving id from DataGrid: ['DataGrid':'Retrieving', 'DocumentId':{ID}]");
-            Database_transactions_1 db_conn_2 = new Database_transactions_1();
-            var docDetails = db_conn_2.GetServiceDocumentFromDatabase(ID);
-            log.Debug($"Invoking method: [{db_conn_2.GetServiceDocumentFromDatabase(ID)}] with 'ID':{ID} as an argument");
+                var showDocument = new ShortServiceDocument(ID);
+                showDocument.Show();
+            }
+            catch (Exception err)
+            {
+                log.Error($"Could not open service document\nError: [{err}]");
+                this.Close();
+            }
+            
 
-            MessageBox.Show(docDetails.documentdate);
+         
+
 
         }
     }

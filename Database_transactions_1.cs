@@ -173,6 +173,7 @@ namespace ItSerwis_Merge_v2
         }
 
 
+
         public struct ServiceDocumentOnRowClickValues
         {
             public string id { get; set; }
@@ -241,6 +242,39 @@ namespace ItSerwis_Merge_v2
             return "";
         }
 
+
+        public void UpdateServiceDocument(int docID, string customerName, string customerLastName, string customerAddress, string empName, string empLastName, int empNum, string devType, string devBrand, string devModel, string descr)
+        {
+            try
+            {
+                ConnectToDatabase();
+                var sql = $"UPDATE ITSERWIS.SERVICEDOCUMENT SET " +
+                    $"CLIENTNAME='{customerName}', CLIENTSURENAME='{customerLastName}', " +
+                    $"CLIENTADDRESS='{customerAddress}', EMPLOYEENAME='{empName}', EMPLOYEESURNAME='{empLastName}', EMPLOYEEID={empNum}, DEVICETYPE='{devType}', " +
+                    $"DEVICEBRAND='{devBrand}', DEVICEMODEL='{devModel}', DESCRIPTION='{descr}' WHERE ID={docID}";
+                var cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader reader;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                log.Info($"Updating service document: ['ID':'{docID}', 'CLIENTNAME':'{customerName}'," +
+                    $" 'CLIENTSURENAME':'{customerLastName}', 'CLIENTADDRESS':'{customerAddress}']" +
+                    $"'EMPLOYEENAME':'{empName}', 'EMPLOYEESURNAME':'{empLastName}', 'EMPLOYEEID':'{empNum}'" +
+                    $"'DEVICETYPE':'{devType}', 'DEVICEBRAND':'{devBrand}', 'DEVICEMODEL':'{devModel}', 'DESCRIPTION':'{descr}'");
+                CloseConnection();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Wystąpił błąd: {err.Message}");
+                log.Error($"Error occured: [{err.Message}]");
+            }
+        }
+
         /// <summary>
         /// method that creates login session
         /// </summary>
@@ -248,7 +282,6 @@ namespace ItSerwis_Merge_v2
         /// <param name="password"></param>
         public void CreateSession(string username, string password)
         {
-            log.Info("Trying establish the connection to database.");
             ConnectToDatabase();
 
             Guid obj = Guid.NewGuid();
@@ -331,6 +364,7 @@ namespace ItSerwis_Merge_v2
 
             return checkIfValid;
         }
+
 
         /// <summary>
         /// DbClass method that inserts data into database from short service document form
