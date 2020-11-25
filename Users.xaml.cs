@@ -21,7 +21,7 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         public void ShowAllUsers()
         {
-            DbClass dbconn = new DbClass();
+            Database_transactions_1 dbconn = new Database_transactions_1();
             string sqlSelectAll = "SELECT Id, Firstname, Lastname, Age  from USERDATA";
             DataSet UsersData = dbconn.fillDataset("LoadDataBinding", sqlSelectAll, "Users");
             ListUsers.DataContext = UsersData;

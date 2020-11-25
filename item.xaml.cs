@@ -17,7 +17,7 @@ namespace ItSerwis_Merge_v2
 
         private void FillItemsGrid()
         {
-            DbClass dbconn = new DbClass();
+            Database_transactions_1 dbconn = new Database_transactions_1();
             string sqlItems = "SELECT id, name, barcode, productindex from item";
             DataSet itemsdata = dbconn.fillDataset("LoadDataBindingsItems", sqlItems, "Items");
             Articles.DataContext = itemsdata;
