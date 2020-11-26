@@ -16,7 +16,7 @@ namespace ItSerwis_Merge_v2
 
         private void FillClientsDataGrid()
         {
-            DbClass dbconn = new DbClass();
+            Database_transactions_1 dbconn = new Database_transactions_1();
             string sqlSelectAll = "SELECT firstname, lastname, concat(address1, ' ', address2) as address, city, postcode, VOIVODESHIP, country, phone, email from CUSTOMERS";
             DataSet clientsData = dbconn.fillDataset("DataBindClients", sqlSelectAll, "Clients");
             JustClients.DataContext = clientsData;

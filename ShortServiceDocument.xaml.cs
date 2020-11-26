@@ -8,17 +8,25 @@ using System.Reflection;
 
 namespace ItSerwis_Merge_v2
 {
+
     /// <summary>
     /// Logika interakcji dla klasy ShortServiceDocument.xaml
     /// </summary>
     public partial class ShortServiceDocument : Window
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger();
-        public ShortServiceDocument()
+
+   
+        public int docID { get; set; }
+   
+        public ShortServiceDocument(int? documentID=0)
         {
             InitializeComponent();
+            this.docID = (int)documentID;
             DisplayDate();
             FillEmployeeData();
+
+
         }
 
         /// <summary>
@@ -26,14 +34,53 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         private void FillEmployeeData()
         {
-            DbClass dbconn = new DbClass();
+            Database_transactions_1 dbconn = new Database_transactions_1();
             // The purpose of this method is to fill  the blanks by data from mysql database, table -> session
             var user = dbconn.GetUserCredentials();
 
             empname.Text = user.firstname;
             emplastname.Text = user.lastname;
             empnumber.Text = user.docid;
+
+            if (docID != 0)
+            {
+                var docServ = dbconn.GetServiceDocumentFromDatabase(docID);
+                name.Text = docServ.clientname;
+                lastname.Text = docServ.clientsurename;
+                address.Text = docServ.clientaddress;
+                type.Text = docServ.devicetype;
+                brand.Text = docServ.devicebrand;
+                model.Text = docServ.devicemodel;
+                description.Text = docServ.description;
+            }
+
+            }
+        private void Update(object sender, EventArgs e)
+        {
+            log.Debug($"Invoking: {sender}");
+
+            Database_transactions_1 dbconn = new Database_transactions_1();
+            var user = dbconn.GetUserCredentials();
+            var userId = Int32.Parse(user.docid);
+            
+            try
+            {
+                dbconn.UpdateServiceDocument(docID, name.Text, lastname.Text, address.Text, user.firstname, user.lastname, userId, type.Text, brand.Text, model.Text, description.Text);
+            }
+            catch (Exception err)
+            {
+                log.Error($"Could not update ServiceDocument: ['ID':'{docID}']\nError: [{err.Message}]");
+            }
+
+            finally
+            {
+                MessageBox.Show("Dokument został zaktualizowany");
+            }
+
+
         }
+
+
         /// <summary>
         /// method that displays date instead of hand write it
         /// </summary>
@@ -49,7 +96,7 @@ namespace ItSerwis_Merge_v2
         /// <param name="e"></param>
         private void InsertData(string now, string customerName, string customerLastName, string customerAddr, string employeeName, string employeeLastName, int parsedEmpNum, string deviceType, string deviceBrand, string deviceModel, string descr, string documentnumber)
         {
-            DbClass db = new DbClass();
+            Database_transactions_1 db = new Database_transactions_1();
 
             try
             {
@@ -183,7 +230,7 @@ namespace ItSerwis_Merge_v2
 
         private string Get_LastDocID()
         {
-            DbClass conndb = new DbClass();
+            Database_transactions_1 conndb = new Database_transactions_1();
             var lastDocId = conndb.GetLastDocumentID();
 
             if (lastDocId != "")

@@ -1,16 +1,71 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Data;
+using System.IO.Packaging;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using System.Xml;
+using System.IO;
+using System.Reflection;
 
 namespace ItSerwis_Merge_v2
 {
-
-    class DbClass
+    // Strucure that contains database config data
+    public struct ConfigDatabase
     {
+        public string server { get; set; }
+        public string userid { get; set; }
+        public string password { get; set; }
+        public string database { get; set; }
+
+        public void SetDatabaseConfigData()
+        {
+            string path = @"G:\Temp\Itserwis\config\database\config.xml";
+            XmlDocument xdc = new XmlDocument();
+            xdc.Load(path);
+            // login
+            var login = xdc.SelectSingleNode("root/user/login").InnerText;
+            // password
+            var pass = xdc.SelectSingleNode("root/user/password").InnerText;
+            // server
+            var server = xdc.SelectSingleNode("root/connection/server").InnerText;
+            // database
+            var db = xdc.SelectSingleNode("root/connection/database").InnerText;
+
+
+
+            this.server = server;
+            this.userid = login;
+            this.database = db;
+            this.password = pass;
+
+        }
+
+
+
+    }
+
+
+    class Database_transactions_1
+    {
+
+
+            // database connection string method
+            public static string DatabaseConnectionString()
+        {
+            var connString = new ConfigDatabase();
+            connString.SetDatabaseConfigData();
+            string connectionString = $@"server={connString.server};userid={connString.userid};password={connString.password};database={connString.database}";
+            return connectionString;
+        }
+
+
+        // init MySQL conn
+        internal MySqlConnection conn = new MySqlConnection(DatabaseConnectionString());
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public void ConnectToDatabase()
+        internal void ConnectToDatabase()
         {
             log.Info("Trying establish the connection to database.");
             try
@@ -33,9 +88,7 @@ namespace ItSerwis_Merge_v2
             DataSet ItemsData = new DataSet();
             MyDA.Fill(ItemsData, loaddatabindings);
             log.Debug($"{nameOfDataSet} data set created.");
-
             CloseConnection();
-
             return ItemsData;
         }
 
@@ -61,9 +114,9 @@ namespace ItSerwis_Merge_v2
         }
 
 
-        //variables for mysql connection
-        public static string connectionString = @"server=localhost;userid=root;password=root;database=itserwis";
-        public MySqlConnection conn = new MySqlConnection(connectionString);
+      
+
+
         /// <summary>
         /// validate users that login to application
         /// </summary>
@@ -119,6 +172,53 @@ namespace ItSerwis_Merge_v2
             return result;
         }
 
+
+
+        public struct ServiceDocumentOnRowClickValues
+        {
+            public string id { get; set; }
+            public string documentdate { get; set; }
+            public string clientname { get; set; }
+            public string clientsurename { get; set; }
+            public string clientaddress { get; set; }
+            public string employeename { get; set; }
+            public string employeesurename { get; set; }
+            public string employeeid { get; set; }
+            public string devicetype { get; set; }
+            public string devicebrand { get; set; }
+            public string devicemodel { get; set; }
+            public string description { get; set; }
+            public string internaldocumentid { get; set; }
+        }
+
+        public ServiceDocumentOnRowClickValues GetServiceDocumentFromDatabase(int id)
+        {
+            string sql = $"select * from servicedocument where id={id}";
+            var cmd = new MySqlCommand(sql, conn);
+            ConnectToDatabase();
+            var reader = cmd.ExecuteReader();
+            reader.Read();
+            var result = new ServiceDocumentOnRowClickValues
+            {
+                id = reader.GetString(0),
+                documentdate = reader.GetString(1),
+                clientname = reader.GetString(2),
+                clientsurename = reader.GetString(3),
+                clientaddress = reader.GetString(4),
+                employeename = reader.GetString(5),
+                employeesurename = reader.GetString(6),
+                employeeid = reader.GetString(7),
+                devicetype = reader.GetString(8),
+                devicebrand = reader.GetString(9),
+                devicemodel = reader.GetString(10),
+                description = reader.GetString(11),
+                internaldocumentid = reader.GetString(12)
+            };
+
+            CloseConnection();
+            return result;
+        }
+
         public string GetLastDocumentID()
         {
             ConnectToDatabase();
@@ -142,6 +242,39 @@ namespace ItSerwis_Merge_v2
             return "";
         }
 
+
+        public void UpdateServiceDocument(int docID, string customerName, string customerLastName, string customerAddress, string empName, string empLastName, int empNum, string devType, string devBrand, string devModel, string descr)
+        {
+            try
+            {
+                ConnectToDatabase();
+                var sql = $"UPDATE ITSERWIS.SERVICEDOCUMENT SET " +
+                    $"CLIENTNAME='{customerName}', CLIENTSURENAME='{customerLastName}', " +
+                    $"CLIENTADDRESS='{customerAddress}', EMPLOYEENAME='{empName}', EMPLOYEESURNAME='{empLastName}', EMPLOYEEID={empNum}, DEVICETYPE='{devType}', " +
+                    $"DEVICEBRAND='{devBrand}', DEVICEMODEL='{devModel}', DESCRIPTION='{descr}' WHERE ID={docID}";
+                var cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader reader;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                log.Info($"Updating service document: ['ID':'{docID}', 'CLIENTNAME':'{customerName}'," +
+                    $" 'CLIENTSURENAME':'{customerLastName}', 'CLIENTADDRESS':'{customerAddress}']" +
+                    $"'EMPLOYEENAME':'{empName}', 'EMPLOYEESURNAME':'{empLastName}', 'EMPLOYEEID':'{empNum}'" +
+                    $"'DEVICETYPE':'{devType}', 'DEVICEBRAND':'{devBrand}', 'DEVICEMODEL':'{devModel}', 'DESCRIPTION':'{descr}'");
+                CloseConnection();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Wystąpił błąd: {err.Message}");
+                log.Error($"Error occured: [{err.Message}]");
+            }
+        }
+
         /// <summary>
         /// method that creates login session
         /// </summary>
@@ -149,7 +282,6 @@ namespace ItSerwis_Merge_v2
         /// <param name="password"></param>
         public void CreateSession(string username, string password)
         {
-            log.Info("Trying establish the connection to database.");
             ConnectToDatabase();
 
             Guid obj = Guid.NewGuid();
@@ -232,6 +364,7 @@ namespace ItSerwis_Merge_v2
 
             return checkIfValid;
         }
+
 
         /// <summary>
         /// DbClass method that inserts data into database from short service document form

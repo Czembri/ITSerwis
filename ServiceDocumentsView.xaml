@@ -20,7 +20,7 @@
         <Grid Height="400" Width="650" Background="#fff" >
             <TextBlock Height="32" HorizontalAlignment="Left" Margin="16,15,0,0" Name="textBlockHeading" Text="Dokumenty serwisowe" VerticalAlignment="Top" Width="310"  FontSize="18" FontStretch="Normal"/>
             <Grid HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="650">
-                <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="14,55,0,46" Name="ServiceClients" Width="625" ItemsSource="{Binding Path=LoadDataBindingDocs}" CanUserResizeRows="False">
+                <DataGrid MouseDoubleClick="Row_DoubleClick" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="14,55,0,46" Name="ServiceDocuments" Width="625" ItemsSource="{Binding Path=LoadDataBindingDocs}" CanUserResizeRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=id}" Header="ID" Width="50" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Path=documentdate}" Header="Data wystawienia dokumentu" Width="170" IsReadOnly="True" />

@@ -35,7 +35,7 @@ namespace ItSerwis_Merge_v2
 
         private void SessionManager()
         {
-            DbClass dbsql = new DbClass();
+            Database_transactions_1 dbsql = new Database_transactions_1();
             var checkIfOpen = dbsql.ManageSessions();
             if (checkIfOpen == true)
             {
@@ -61,7 +61,7 @@ namespace ItSerwis_Merge_v2
             string encrPass = EncryptData(Password.Password.ToString());
 
 
-            DbClass dbSql = new DbClass();
+            Database_transactions_1 dbSql = new Database_transactions_1();
 
             log.Info("Trying establish the connection to database.");
 
