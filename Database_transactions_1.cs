@@ -9,6 +9,7 @@ using System.Xml;
 using System.IO;
 using System.Reflection;
 
+
 namespace ItSerwis_Merge_v2
 {
     // Strucure that contains database config data
@@ -46,10 +47,22 @@ namespace ItSerwis_Merge_v2
 
     }
 
-
-    class Database_transactions_1
+    public interface Connection
     {
 
+        void ConnectToDatabase();
+
+        void DisposeConnection();
+
+        void CloseConnection();
+
+        bool IfReaderHasRows(bool rows);
+    }
+
+    public class Database_transactions_1 
+    {
+
+        
 
             // database connection string method
             public static string DatabaseConnectionString()
@@ -65,7 +78,7 @@ namespace ItSerwis_Merge_v2
         internal MySqlConnection conn = new MySqlConnection(DatabaseConnectionString());
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        internal void ConnectToDatabase()
+        void ConnectToDatabase()
         {
             log.Info("Trying establish the connection to database.");
             try
