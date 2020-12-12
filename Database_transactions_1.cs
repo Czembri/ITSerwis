@@ -47,7 +47,7 @@ namespace ItSerwis_Merge_v2
     }
 
 
-    class Database_transactions_1
+    public class Database_transactions_1
     {
 
 
@@ -366,6 +366,7 @@ namespace ItSerwis_Merge_v2
         }
 
 
+
         /// <summary>
         /// DbClass method that inserts data into database from short service document form
         /// </summary>
@@ -414,6 +415,35 @@ namespace ItSerwis_Merge_v2
             }
 
             CloseConnection();
+        }
+
+        public void InsertIntoClientsFromServiceDocs(string customerName, string customerLastName, string customerAddress)
+        {
+            try
+            {
+                ConnectToDatabase();
+                var sql = $"INSERT INTO CUSTOMERS(FIRSTNAME, LASTNAME, ADDRESS1) VALUES ('{customerName}', '{customerLastName}', '{customerAddress}')";
+                var cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader reader;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                }
+                log.Info($"Adding client to CUSTOMERS table."+
+                    $"CLIENT: ['FIRSTNAME':'{customerName}',"+
+                    $"'LASTNAME':'{customerLastName}'," +
+                    $"'ADDRESS':{customerAddress}");
+                CloseConnection();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show($"Wystąpił błąd: {err.Message}");
+                log.Error($"Error occured: [{err.Message}]");
+            }
         }
 
         public bool ManageSessions()
