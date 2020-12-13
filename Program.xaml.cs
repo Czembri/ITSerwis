@@ -63,7 +63,7 @@ namespace ItSerwis_Merge_v2
             clientsForm.Show();
         }
 
-        private void ShowSerwisClients(object sender, EventArgs e)
+        private void ShowServiceClients(object sender, EventArgs e)
         {
             log.Debug($"Invoking [{sender}].");
             var SerwisClientsForm = new SerwisClients();

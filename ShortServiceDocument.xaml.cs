@@ -15,7 +15,14 @@ namespace ItSerwis_Merge_v2
     public partial class ShortServiceDocument : Window
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger();
-        );
+        
+        public string GetDateString()
+        {
+            DateTime today = DateTime.Today;
+            string now = today.ToString("yyyy-MM-dd");
+            return now;
+        }
+    
 
         public int docID { get; set; }
    
@@ -125,14 +132,18 @@ namespace ItSerwis_Merge_v2
             var customerLastName = lastname.Text.ToString();
             var customerAddr = address.Text.ToString();
 
+            var date = GetDateString();
+            var lastDocID = Get_LastDocID();
+            var parsedDocumentID = Int32.Parse(lastDocID);
+
             try
             {
-                db.InsertIntoClientsFromServiceDocs(customerName, customerLastName, customerAddr);
-                log.Info("Adding client to CUSTOMERS table.");
+                db.InsertIntoClientsFromServiceDocs(customerName, customerLastName, customerAddr, date, parsedDocumentID);
+                log.Info("Adding client to database table.");
                 MessageBox.Show($"Customer: " +
                     $"Name - {customerName} {customerLastName}" +
                     $"Address - {customerAddr}" +
-                    $" added to Customers' table");
+                    $" added to database");
 
             }catch (Exception err)
             {
@@ -146,10 +157,9 @@ namespace ItSerwis_Merge_v2
         /// <param name="e"></param>
         private void GeneratePdf(object sender, EventArgs e)
         {
-            DateTime today = DateTime.Today;
-            var now = today.ToString("yyyy-MM-dd");
+            
             string chars = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
+            var now = GetDateString();
             var customerName = name.Text.ToString();
             var customerLastName = lastname.Text.ToString();
             var empNum = empnumber.Text;
@@ -162,7 +172,7 @@ namespace ItSerwis_Merge_v2
             var deviceModel = model.Text.ToString();
             var descr = description.Text.ToString();
 
-            var lastDocID = Get_LastDocID();
+
             Random rdNum = new Random();
 
             // variables for randomNumber string - inserted to column documentnumber
@@ -180,7 +190,7 @@ namespace ItSerwis_Merge_v2
             char char3 = chars[randChar3];
 
             string randomNumber = $"NR{rand1}{rand2}{rand3}-{char1}{char2}{char3}";
-
+            var lastDocID = Get_LastDocID();
             var parsedDocumentID = Int32.Parse(lastDocID);
 
             parsedDocumentID += 1;
@@ -190,20 +200,18 @@ namespace ItSerwis_Merge_v2
             try
             {
                 InsertData(now, customerName, customerLastName, customerAddr, employeeName, employeeLastName, parsedEmpNum, deviceType, deviceBrand, deviceModel, descr, documentInternalID);
-            } catch (Exception err)
+            }
+            catch (Exception err)
             {
                 MessageBox.Show($"Wystąpił błąd: {err.Message}");
                 log.Error($"Error while inserting data to database: [{err.Message}]");
-            } finally
+            }
+            finally
             {
                 log.Info($"Document - [{documentInternalID}] - as parsed and inserted to local database.");
             }
-            
 
-            var stringDocumentId = parsedDocumentID.ToString();
-
-
-            RunCmd($"D:/Temp/Itserwis/generate_pdf.py", stringDocumentId);
+            RunCmd($"D:/Temp/Itserwis/generate_pdf.py", lastDocID);
         }
 
         private void Close(object sender, EventArgs e)

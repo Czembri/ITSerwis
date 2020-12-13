@@ -21,6 +21,7 @@ namespace ItSerwis_Merge_v2
     /// </summary>
     public partial class SerwisClients : Window
     {
+        private static readonly log4net.ILog log = LogHelper.GetLogger();
         public SerwisClients()
         {
             InitializeComponent();
@@ -33,9 +34,17 @@ namespace ItSerwis_Merge_v2
         private void FillServiceClientsDataGrid()
         {
             Database_transactions_1 dbconn = new Database_transactions_1();
-            string sqlSelectServiceClients = "SELECT clientname, clientsurename, clientaddress from servicedocument";
+            string sqlSelectServiceClients = "SELECT FIRSTNAME, LASTNAME, CLIENTADDRESS from SERVICECLIENTS";
             DataSet serviceClientsData = dbconn.fillDataset("LoadDataBindingClients", sqlSelectServiceClients, "Service Clients");
             ServiceClients.DataContext = serviceClientsData;
+        }
+
+        private void CreateClient(object sender, EventArgs e)
+        {
+            log.Debug($"Invoking [{sender}].");
+            var clientsCreateForm = new CreateClient();
+            log.Debug($"Invoking form [{clientsCreateForm}]");
+            clientsCreateForm.Show();
         }
     }
 }
