@@ -15,8 +15,8 @@ namespace ItSerwis_Merge_v2
     public partial class ShortServiceDocument : Window
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger();
+        );
 
-   
         public int docID { get; set; }
    
         public ShortServiceDocument(int? documentID=0)
@@ -101,7 +101,7 @@ namespace ItSerwis_Merge_v2
             try
             {
                 db.InsertIntoServiceDocuments(now, customerName, customerLastName, customerAddr, employeeName, employeeLastName, parsedEmpNum, deviceType, deviceBrand, deviceModel, descr, documentnumber);
-                log.Debug($"Short Service Document created: [CustomerName:{customerName}, CustomerLastName:{customerLastName}, CustomerAddress:{customerAddr}, EmployeeName:{employeeName}, EmployeeLastName:{ employeeLastName}, EmployeeNumber:{parsedEmpNum}, DeviceType:{deviceType}, DeviceBrand:{deviceBrand}, DeviceModel:{deviceModel}, DocumentNumber:{documentnumber}]");
+                log.Info($"Short Service Document created: [CustomerName:{customerName}, CustomerLastName:{customerLastName}, CustomerAddress:{customerAddr}, EmployeeName:{employeeName}, EmployeeLastName:{ employeeLastName}, EmployeeNumber:{parsedEmpNum}, DeviceType:{deviceType}, DeviceBrand:{deviceBrand}, DeviceModel:{deviceModel}, DocumentNumber:{documentnumber}]");
             }
             catch (Exception err)
             {
@@ -114,6 +114,30 @@ namespace ItSerwis_Merge_v2
                 this.Close();
             }
 
+        }
+
+
+
+        private void InsertIntoClients(object sender, EventArgs e)
+        {
+            Database_transactions_1 db = new Database_transactions_1();
+            var customerName = name.Text.ToString();
+            var customerLastName = lastname.Text.ToString();
+            var customerAddr = address.Text.ToString();
+
+            try
+            {
+                db.InsertIntoClientsFromServiceDocs(customerName, customerLastName, customerAddr);
+                log.Info("Adding client to CUSTOMERS table.");
+                MessageBox.Show($"Customer: " +
+                    $"Name - {customerName} {customerLastName}" +
+                    $"Address - {customerAddr}" +
+                    $" added to Customers' table");
+
+            }catch (Exception err)
+            {
+                log.Error($"Something went wrong: [ERROR: '{err.Message}']");
+            }
         }
         /// <summary>
         /// method to generate pdf from filled short document form

@@ -153,13 +153,16 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button Click="GeneratePdf" x:Name="print" Height="30" Grid.Column="1" Grid.Row="2" Content="Generuj dokument"  Width="120"  HorizontalAlignment="right" Margin="0 10"/>
-            <Button Click="Close" x:Name="close" Height="30" Grid.Column="1" Grid.Row="2" Content="Zamknij"  Width="100"  HorizontalAlignment="left" Margin="0 10"/>
-            <Button Click="Update" x:Name="update" Height="30" Grid.Column="1" Grid.Row="2" Content="Update"  Width="100"  HorizontalAlignment="Center" Margin="0 10"/>
+            <Button Click="GeneratePdf" x:Name="print" Height="30" Grid.Column="3" Grid.Row="2" Content="Generuj dokument"  Width="120"  HorizontalAlignment="right" Margin="0 10"/>
+            <Button Click="Close" x:Name="close" Height="30" Grid.Column="2" Grid.Row="2" Content="Zamknij"  Width="100"  HorizontalAlignment="right" Margin="0 10"/>
+            <Button Click="Update" x:Name="update" Height="30" Grid.Column="1" Grid.Row="2" Content="Update"  Width="100"  HorizontalAlignment="right" Margin="0 10"/>
+            <Button Click="InsertIntoClients" x:Name="insertClient" Height="30" Grid.Column="0" Grid.Row="2" Content="Add Client"  Width="100"  HorizontalAlignment="left" Margin="0 10"/>
         </Grid>
     </StackPanel>
 </Window>
