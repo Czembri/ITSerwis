@@ -90,9 +90,7 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
-
     <Reference Include="System.Web" />
-
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -123,6 +121,9 @@
     <Compile Include="Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateClient.xaml.cs">
+      <DependentUpon>CreateClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database_transactions_1.cs" />
     <Compile Include="DocumentsFilter.xaml.cs">
       <DependentUpon>DocumentsFilter.xaml</DependentUpon>
@@ -144,6 +145,10 @@
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Page Include="Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

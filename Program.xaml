@@ -20,7 +20,7 @@
             </MenuItem>
             <MenuItem Header="_Serwis">
                 <MenuItem Header="_Dokumenty serwisowe" Click="ShowServiceDocuments" />
-                <MenuItem Header="_Klienci" Click="ManageClients"/>
+                <MenuItem Header="_Klienci" Click="ShowServiceClients"/>
                 <MenuItem Header="_Skrócony dokument serwisowy" Click="CreateShortServiceDocument"/>
 
             </MenuItem>
@@ -34,7 +34,7 @@
             </MenuItem>
             <MenuItem Header="_Raporty">
                 <MenuItem Header="_Raport dochodów" />
-                <MenuItem Header="_Klienci" />
+                <MenuItem Header="_Klienci"  Click="ManageClients"/>
                 <MenuItem Header="_Magazyn">
                     <MenuItem Header="_Spis artykułów" Click="Item"/>
                     <MenuItem Header="_Stan magazynu"/>

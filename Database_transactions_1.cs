@@ -417,12 +417,12 @@ namespace ItSerwis_Merge_v2
             CloseConnection();
         }
 
-        public void InsertIntoClientsFromServiceDocs(string customerName, string customerLastName, string customerAddress)
+        public void InsertIntoClientsFromServiceDocs(string customerName, string customerLastName, string customerAddress, string date, int docID)
         {
             try
             {
                 ConnectToDatabase();
-                var sql = $"INSERT INTO CUSTOMERS(FIRSTNAME, LASTNAME, ADDRESS1) VALUES ('{customerName}', '{customerLastName}', '{customerAddress}')";
+                var sql = $"INSERT INTO SERVICECLIENTS(FIRSTNAME, LASTNAME, CREATIONDATE, SERVICEDOCUMENTID, CLIENTADDRESS) VALUES ('{customerName}', '{customerLastName}', '{date}', '{docID}', '{customerAddress}')";
                 var cmd = new MySqlCommand(sql, conn);
 
                 MySqlDataReader reader;
