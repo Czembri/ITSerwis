@@ -219,6 +219,34 @@ namespace ItSerwis_Merge_v2
             }
         }
 
+        public void DeleteServiceDocument(int id)
+        {
+                conn.ConnectToDatabase();
+
+                try
+                {
+                    var stm = $"DELETE FROM SERVICEDOCUMENT WHERE ID={id}";
+                    var cmd = new MySqlCommand(stm, conn.conn);
+
+                    MySqlDataReader reader;
+
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                    log.Debug($"Row found: [{reader.HasRows}]");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    log.Error($"Error occured: [{e.Message}]");
+                }
+            
+
+            conn.CloseConnection();
+        }
 
     }
 }

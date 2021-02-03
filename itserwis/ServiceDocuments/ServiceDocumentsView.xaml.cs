@@ -83,6 +83,29 @@ namespace ItSerwis_Merge_v2
 
         }
 
+        private void MenuItem_RightClick(object sender, EventArgs e)
+        {
+            DataRowView dataRowView = (DataRowView)ServiceDocuments.SelectedItem;
+            int ID = Convert.ToInt32(dataRowView.Row[0]);
+
+            log.Info($"Retrieving id from DataGrid: ['DataGrid':'Retrieving', 'DocumentId':{ID}]");
+
+            var documentsClassHandler = new ServiceDocumentsAndDataSets();
+
+            try
+            {
+                documentsClassHandler.DeleteServiceDocument(ID);
+                log.Info($"Deleting service document: ['ServiceDocument':'{ID}']");
+                MessageBox.Show("Dokument został usunięty.");
+            }
+            catch (Exception err)
+            {
+                log.Error($"Error occured: ['Error':{err.Message}]");
+                MessageBox.Show($"Wystąpił błąd: [{err.Message}]");
+            }
+            ServiceDocuments.Items.Refresh();
+        }
+
 
     }
 }

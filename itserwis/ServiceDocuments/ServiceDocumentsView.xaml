@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ItSerwis_Merge_v2"
         mc:Ignorable="d"
         Title="ServiceDocumentsView" Height="450" Width="800">
+  
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" FontSize="14">
@@ -16,19 +17,18 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
+        
 
         <Grid Height="400" Width="650" Background="#fff" >
             <TextBlock Height="32" HorizontalAlignment="Left" Margin="16,15,0,0" Name="textBlockHeading" Text="Dokumenty serwisowe" VerticalAlignment="Top" Width="310"  FontSize="18" FontStretch="Normal"/>
             <Grid HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="650">
                 <DataGrid MouseDoubleClick="Row_DoubleClick" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="14,55,0,46" Name="ServiceDocuments" Width="625" ItemsSource="{Binding Path=LoadDataBindingDocs}" CanUserResizeRows="False">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Delete" Click="MenuItem_RightClick" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="Zaznacz" Width="80">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding Path=id}" Header="ID" Width="50" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Path=documentdate}" Header="Data wystawienia dokumentu" Width="170" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Path=clientname}" Header="Imię klienta" Width="200" IsReadOnly="True" />
