@@ -215,26 +215,28 @@ namespace ItSerwis_Merge_v2
                 log.Info($"Document - [{documentInternalID}] - as parsed and inserted to local database.");
             }
 
-            SendPostInfoAsync($"{parsedDocumentID}");
+            // Old methos of creating pdf (for now useless)
+            //SendPostInfoAsync($"{parsedDocumentID}");
+            //RunCmd($"D:/Temp/Itserwis/generate_pdf.py", $"{parsedDocumentID}");
 
-
-
-            RunCmd($"D:/Temp/Itserwis/generate_pdf.py", $"{parsedDocumentID}");
+            //new way of generating pdfs
+            var cPdf = new CreatePDF();
+            cPdf.create();
         }
 
-        private async System.Threading.Tasks.Task SendPostInfoAsync(string parsedDocumentID)
-        {
-            var content = new FormUrlEncodedContent(new[]
-           {
-                new KeyValuePair<string, string>("", $"{parsedDocumentID}")
-            });
+        //private async System.Threading.Tasks.Task SendPostInfoAsync(string parsedDocumentID)
+        //{
+        //    var content = new FormUrlEncodedContent(new[]
+        //   {
+        //        new KeyValuePair<string, string>("", $"{parsedDocumentID}")
+        //    });
 
-            var response = await client.PostAsync("https://localhost:44399/api/Documents", content);
+        //    var response = await client.PostAsync("https://localhost:44399/api/Documents", content);
 
-            var responseString = await response.Content.ReadAsStringAsync();
+        //    var responseString = await response.Content.ReadAsStringAsync();
 
-            log.Debug(responseString);
-        }
+        //    log.Debug(responseString);
+        //}
 
         private void Close(object sender, EventArgs e)
         {
@@ -244,8 +246,7 @@ namespace ItSerwis_Merge_v2
 
 
         /// <summary>
-        /// runs python script which generates pdf file for servicedocument
-        /// </summary>
+        /// runs python scripts
         /// <param name="cmd"></param>
         /// <param name="args"></param>
         private void RunCmd(string cmd, string args)
