@@ -36,17 +36,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icons8-Windows-8-Very-Basic-Services.ico</ApplicationIcon>
+    <ApplicationIcon>Icons\Icons8-Windows-8-Very-Basic-Services.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="ConfigParser, Version=0.3.4.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Salaros.ConfigParser.0.3.4\lib\net45\ConfigParser.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -125,8 +128,9 @@
     <Compile Include="Clients\CreateClient.xaml.cs">
       <DependentUpon>CreateClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ServiceDocuments\CreatePDF.cs" />
     <Compile Include="ServiceDocuments\ServiceDocumentsAndDataSets.cs" />
-    <Compile Include="DocumentsFilter.xaml.cs">
+    <Compile Include="ServiceDocuments\DocumentsFilter.xaml.cs">
       <DependentUpon>DocumentsFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\item.xaml.cs">
@@ -155,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DocumentsFilter.xaml">
+    <Page Include="ServiceDocuments\DocumentsFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +220,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -228,9 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\Icons8-Windows-8-Very-Basic-Services.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons8-Windows-8-Very-Basic-Services.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

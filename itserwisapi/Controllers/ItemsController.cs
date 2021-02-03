@@ -20,10 +20,7 @@ namespace ItSerwisAPI.Controllers
         [HttpGet]
         public object SelectByID()
         {
-            DbConnection dbConn = new DbConnection();
-            var items = dbConn.GetItems();
-            var serialized = Classes.Utl.SerializeToXml(items);
-            return serialized;
+            return "Items";
 
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,10 +14,10 @@ namespace ItSerwisAPI.Controllers
         [HttpGet]
         public object SelectByID()
         {
-            DbConnection dbConn = new DbConnection();
-            var docs = dbConn.GetDocuments();
-            return Classes.Utl.SerializeToXml(docs);
+            return "Service Documents";
 
         }
     }
+
+
 }

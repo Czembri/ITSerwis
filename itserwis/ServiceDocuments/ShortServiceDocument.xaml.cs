@@ -4,7 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Reflection;
-
+using System.Net.Http;
+using System.Collections.Generic;
 
 namespace ItSerwis_Merge_v2
 {
@@ -15,7 +16,8 @@ namespace ItSerwis_Merge_v2
     public partial class ShortServiceDocument : Window
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger();
-        
+        private static readonly HttpClient client = new HttpClient();
+
         public string GetDateString()
         {
             DateTime today = DateTime.Today;
@@ -157,7 +159,7 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void GeneratePdf(object sender, EventArgs e)
+        private void GeneratePdfAsync(object sender, EventArgs e)
         {
             
             string chars = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -213,8 +215,28 @@ namespace ItSerwis_Merge_v2
                 log.Info($"Document - [{documentInternalID}] - as parsed and inserted to local database.");
             }
 
-            RunCmd($"D:/Temp/Itserwis/generate_pdf.py", lastDocID);
+            // Old methos of creating pdf (for now useless)
+            //SendPostInfoAsync($"{parsedDocumentID}");
+            //RunCmd($"D:/Temp/Itserwis/generate_pdf.py", $"{parsedDocumentID}");
+
+            //new way of generating pdfs
+            var cPdf = new CreatePDF();
+            cPdf.create();
         }
+
+        //private async System.Threading.Tasks.Task SendPostInfoAsync(string parsedDocumentID)
+        //{
+        //    var content = new FormUrlEncodedContent(new[]
+        //   {
+        //        new KeyValuePair<string, string>("", $"{parsedDocumentID}")
+        //    });
+
+        //    var response = await client.PostAsync("https://localhost:44399/api/Documents", content);
+
+        //    var responseString = await response.Content.ReadAsStringAsync();
+
+        //    log.Debug(responseString);
+        //}
 
         private void Close(object sender, EventArgs e)
         {
@@ -224,8 +246,7 @@ namespace ItSerwis_Merge_v2
 
 
         /// <summary>
-        /// runs python script which generates pdf file for servicedocument
-        /// </summary>
+        /// runs python scripts
         /// <param name="cmd"></param>
         /// <param name="args"></param>
         private void RunCmd(string cmd, string args)
