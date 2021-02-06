@@ -8,7 +8,7 @@ namespace ConsoleUpdater
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Age { get => Age.Length > 0 ? Age : Age = "9999"; set => Convert.ToInt32(this.Age); }
+        public string Age { get; set; }
 
         DbConnection conn = new DbConnection();
 
@@ -18,7 +18,8 @@ namespace ConsoleUpdater
 
             try
             {
-                var sql = $"INSERT INTO USERDATA VALUES (NULL, '{this.Username}', '{this.Password}', {this.Age})";
+                var age_ = Convert.ToInt32(this.Age);
+                var sql = $"INSERT INTO USERDATA VALUES (NULL, '{this.Username}', '{this.Password}', {age_})";
                 var cmd = new MySqlCommand(sql, conn.conn);
 
                 MySqlDataReader reader;
