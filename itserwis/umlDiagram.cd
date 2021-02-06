@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ItSerwis_Merge_v2.Clients" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Clients\Clients.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.CreateClient" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Clients\CreateClient.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.SerwisClients" BaseTypeListCollapsed="true">
+    <Position X="15" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAABAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Clients\ServiceClients.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.ConnectDB">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAADBAAAAQAAAAEAAAAAAAAAgA=</HashCode>
+      <FileName>DatabaseConnection\ConnectDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.item" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\item.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.LogHelper">
+    <Position X="15" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LogHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAICAAAABACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.Program" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgAAAAAAIBAAABAAACAIEAAAAAAAABAAAAAAACAA=</HashCode>
+      <FileName>Program.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.CreatePDF">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>ServiceDocuments\CreatePDF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.DocumentsFilter" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceDocuments\DocumentsFilter.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.ServiceDocumentsAndDataSets">
+    <Position X="9.25" Y="5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="ItSerwis_Merge_v2.ServiceDocumentsAndDataSets.ServiceDocumentOnRowClickValues" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ServiceDocuments\ServiceDocumentsAndDataSets.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAACADAAAAAgAAAAAAICAAAAAQAgAAAAAAAAAACAAA=</HashCode>
+      <FileName>ServiceDocuments\ServiceDocumentsAndDataSets.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.ServiceDocumentsView" BaseTypeListCollapsed="true">
+    <Position X="13" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAEgAAAAAAAAAAgAAAACAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceDocuments\ServiceDocumentsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.ShortServiceDocument" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAEAAAAQAgAEACCAIAAAAAAAAAAAAADBCAAAA=</HashCode>
+      <FileName>ServiceDocuments\ShortServiceDocument.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.Session">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAIACAAAAAQAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Users\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.Users" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Users\Users.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.UserValidation">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="ItSerwis_Merge_v2.UserValidation.UserCredentials">
+        <TypeIdentifier>
+          <NewMemberFileName>Users\UserValidation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAACCAAAAAQAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Users\UserValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItSerwis_Merge_v2.Properties.Resources">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ItSerwis_Merge_v2.ConfigDatabase">
+    <Position X="7.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAQABAAAAAAAAAAAAAAAAAAAAAAgAAAAI=</HashCode>
+      <FileName>DatabaseConnection\ConnectDB.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -14,20 +14,19 @@ using static ItSerwis_Merge_v2.ConfigDatabase;
 namespace ItSerwis_Merge_v2
 {
    
-    public class ServiceDocumentsAndDataSets
+    public class ServiceDocumentsAndDataSets : ConnectDB
     {
 
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        ConnectDB conn = new ConnectDB();
         public DataSet fillDataset(string loaddatabindings, string sql, string nameOfDataSet)
         {
-            conn.ConnectToDatabase();
+            ConnectToDatabase();
 
-            MySqlDataAdapter MyDA = new MySqlDataAdapter(sql, conn.conn);
+            MySqlDataAdapter MyDA = new MySqlDataAdapter(sql, conn);
             DataSet ItemsData = new DataSet();
             MyDA.Fill(ItemsData, loaddatabindings);
             log.Debug($"{nameOfDataSet} data set created.");
-            conn.CloseConnection();
+            CloseConnection();
             return ItemsData;
         }
 
@@ -53,8 +52,8 @@ namespace ItSerwis_Merge_v2
         public ServiceDocumentOnRowClickValues GetServiceDocumentFromDatabase(int id)
         {
             string sql = $"select * from servicedocument where id={id}";
-            var cmd = new MySqlCommand(sql, conn.conn);
-            conn.ConnectToDatabase();
+            var cmd = new MySqlCommand(sql, conn);
+            ConnectToDatabase();
             var reader = cmd.ExecuteReader();
             reader.Read();
             var result = new ServiceDocumentOnRowClickValues
@@ -74,16 +73,16 @@ namespace ItSerwis_Merge_v2
                 internaldocumentid = reader.GetString(12)
             };
 
-            conn.CloseConnection();
+            CloseConnection();
             return result;
         }
 
         public string GetLastDocumentID()
         {
-            conn.ConnectToDatabase();
+            ConnectToDatabase();
             string docID;
             var sql = "SELECT id from servicedocument order by id desc limit 1";
-            var cmd = new MySqlCommand(sql, conn.conn);
+            var cmd = new MySqlCommand(sql, conn);
 
             var reader = cmd.ExecuteReader();
             reader.Read();
@@ -97,7 +96,7 @@ namespace ItSerwis_Merge_v2
                 log.Error($"Error while getting first document id: [{err.Message}]");
             }
 
-            conn.CloseConnection();
+            CloseConnection();
             return "";
         }
 
@@ -106,12 +105,12 @@ namespace ItSerwis_Merge_v2
         {
             try
             {
-                conn.ConnectToDatabase();
+                ConnectToDatabase();
                 var sql = $"UPDATE ITSERWIS.SERVICEDOCUMENT SET " +
                     $"CLIENTNAME='{customerName}', CLIENTSURENAME='{customerLastName}', " +
                     $"CLIENTADDRESS='{customerAddress}', EMPLOYEENAME='{empName}', EMPLOYEESURNAME='{empLastName}', EMPLOYEEID={empNum}, DEVICETYPE='{devType}', " +
                     $"DEVICEBRAND='{devBrand}', DEVICEMODEL='{devModel}', DESCRIPTION='{descr}' WHERE ID={docID}";
-                var cmd = new MySqlCommand(sql, conn.conn);
+                var cmd = new MySqlCommand(sql, conn);
 
                 MySqlDataReader reader;
 
@@ -125,7 +124,7 @@ namespace ItSerwis_Merge_v2
                     $" 'CLIENTSURENAME':'{customerLastName}', 'CLIENTADDRESS':'{customerAddress}']" +
                     $"'EMPLOYEENAME':'{empName}', 'EMPLOYEESURNAME':'{empLastName}', 'EMPLOYEEID':'{empNum}'" +
                     $"'DEVICETYPE':'{devType}', 'DEVICEBRAND':'{devBrand}', 'DEVICEMODEL':'{devModel}', 'DESCRIPTION':'{descr}'");
-                conn.CloseConnection();
+                CloseConnection();
             }
             catch (Exception err)
             {
@@ -159,12 +158,12 @@ namespace ItSerwis_Merge_v2
             var checkIfEmpExists = us.ValidateUser(empNum);
             if (checkIfEmpExists == true)
             {
-                conn.ConnectToDatabase();
+                ConnectToDatabase();
 
                 try
                 {
                     var stm = $"INSERT INTO ITSERWIS.SERVICEDOCUMENT VALUES (NULL, '{date}', '{customerName}', '{customerLastName}', '{customerAddress}', '{empName}', '{empLastName}', {empNum}, '{devType}', '{devBrand}', '{devModel}', '{descr}', '{documentnumber}')";
-                    var cmd = new MySqlCommand(stm, conn.conn);
+                    var cmd = new MySqlCommand(stm, conn);
 
                     MySqlDataReader reader;
 
@@ -187,16 +186,16 @@ namespace ItSerwis_Merge_v2
                 MessageBox.Show($"Pracownik: {empName} {empLastName} o numerze {empNum} nie istnieje.");
             }
 
-            conn.CloseConnection();
+            CloseConnection();
         }
 
         public void InsertIntoClientsFromServiceDocs(string customerName, string customerLastName, string customerAddress, string date, int docID)
         {
             try
             {
-                conn.ConnectToDatabase();
+                ConnectToDatabase();
                 var sql = $"INSERT INTO SERVICECLIENTS(FIRSTNAME, LASTNAME, CREATIONDATE, SERVICEDOCUMENTID, CLIENTADDRESS) VALUES ('{customerName}', '{customerLastName}', '{date}', '{docID}', '{customerAddress}')";
-                var cmd = new MySqlCommand(sql, conn.conn);
+                var cmd = new MySqlCommand(sql, conn);
 
                 MySqlDataReader reader;
 
@@ -210,7 +209,7 @@ namespace ItSerwis_Merge_v2
                     $"CLIENT: ['FIRSTNAME':'{customerName}',"+
                     $"'LASTNAME':'{customerLastName}'," +
                     $"'ADDRESS':{customerAddress}");
-                conn.CloseConnection();
+                CloseConnection();
             }
             catch (Exception err)
             {
@@ -221,12 +220,12 @@ namespace ItSerwis_Merge_v2
 
         public void DeleteServiceDocument(int id)
         {
-                conn.ConnectToDatabase();
+                ConnectToDatabase();
 
                 try
                 {
                     var stm = $"DELETE FROM SERVICEDOCUMENT WHERE ID={id}";
-                    var cmd = new MySqlCommand(stm, conn.conn);
+                    var cmd = new MySqlCommand(stm, conn);
 
                     MySqlDataReader reader;
 
@@ -245,7 +244,7 @@ namespace ItSerwis_Merge_v2
                 }
             
 
-            conn.CloseConnection();
+            CloseConnection();
         }
 
     }
