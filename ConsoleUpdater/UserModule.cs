@@ -8,7 +8,7 @@ namespace ConsoleUpdater
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Age { get; set; }
+        public string Age { get; set; } = "9999";
 
         DbConnection conn = new DbConnection();
 

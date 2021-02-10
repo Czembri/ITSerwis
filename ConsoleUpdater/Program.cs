@@ -4,8 +4,8 @@ using System.Windows.Documents;
 
 namespace ConsoleUpdater
 {
-    class Program
-    {
+    public static class Program
+    { 
         static void Main(string[] args)
         {
             if (args.Length == 0)
@@ -15,14 +15,29 @@ namespace ConsoleUpdater
             {
 
                 var us = new UserModule();
-
-                us.Username = args[0];
-                us.Password = args[1];
-                us.Age = args[2];
+                for (int i=0; i < args.Length; i++)
+                {
+                    switch (args[i])
+                    {
+                        case "-u":
+                            us.Username = args[i+1];
+                            break;
+                        case "-p":
+                            us.Password = args[i + 1];
+                            break;
+                        case "-a":
+                            us.Age = args[i + 1];
+                            break;
+                        default:
+                            Console.WriteLine("Default");
+                            break;
+                    }
+                }
 
                 us.InsertNewUserCommand();
 
             }
         }
     }
+
 }

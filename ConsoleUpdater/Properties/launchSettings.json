@@ -2,7 +2,7 @@
   "profiles": {
     "ConsoleUpdater": {
       "commandName": "Project",
-      "commandLineArgs": "ola4 test4 22"
+      "commandLineArgs": "-u ola9999 -p test"
     }
   }
 }
