@@ -14,61 +14,72 @@ namespace ConsoleUpdater
 
         public void InsertNewUserCommand()
         {
+            var enc = new Encryptor();
+            string encrLogin = enc.EncryptData(Username);
+            string encrPass = enc.EncryptData(Password);
+
             conn.ConnectToDatabase();
+            var sqlCheck = $"SELECT LOGINHASH FROM USERLOGIN WHERE LOGINHASH='{encrLogin}'";
+            var cmdCheck = new MySqlCommand(sqlCheck, conn.conn);
+            MySqlDataReader readerCheck;
 
-            try
+            readerCheck = cmdCheck.ExecuteReader();
+
+            if (readerCheck.HasRows)
             {
-                var age_ = Convert.ToInt32(this.Age);
-                var sql = $"INSERT INTO USERDATA VALUES (NULL, '{this.Username}', '{this.Password}', {age_})";
-                var cmd = new MySqlCommand(sql, conn.conn);
-
-                MySqlDataReader reader;
-
-                reader = cmd.ExecuteReader();
-                Console.WriteLine("Inserting data to USERDATA table...");
-                while (reader.Read())
-                {
-                    
-                }
-
-                conn.CloseConnection();
-
-                conn.ConnectToDatabase();
-
-                var enc = new Encryptor();
+                Console.WriteLine("User already exists!");
+                return;
+            }else
+            {
                 try
                 {
-                    string encrLogin = enc.EncryptData(Username);
-                    string encrPass = enc.EncryptData(Password);
+                    var age_ = Convert.ToInt32(this.Age);
+                    var sql = $"INSERT INTO USERDATA VALUES (NULL, '{this.Username}', '{this.Password}', {age_})";
+                    var cmd = new MySqlCommand(sql, conn.conn);
 
-                    var sql__ = $"INSERT INTO USERLOGIN VALUES (NULL, (SELECT ID FROM USERDATA ORDER BY ID DESC LIMIT 1), '{encrLogin}', '{encrPass}')";
-                    var cmd__ = new MySqlCommand(sql__, conn.conn);
-                    MySqlDataReader reader__;
+                    MySqlDataReader reader;
 
-                    reader__ = cmd__.ExecuteReader();
-                    Console.WriteLine("Inserting data to USERLOGIN table...");
-                    while (reader__.Read())
+                    reader = cmd.ExecuteReader();
+                    Console.WriteLine("Inserting data to USERDATA table...");
+                    while (reader.Read())
                     {
-                        
+
                     }
 
                     conn.CloseConnection();
+
+                    conn.ConnectToDatabase();
+
+                    try
+                    {
+
+                        var sql__ = $"INSERT INTO USERLOGIN VALUES (NULL, (SELECT ID FROM USERDATA ORDER BY ID DESC LIMIT 1), '{encrLogin}', '{encrPass}')";
+                        var cmd__ = new MySqlCommand(sql__, conn.conn);
+                        MySqlDataReader reader__;
+
+                        reader__ = cmd__.ExecuteReader();
+                        Console.WriteLine("Inserting data to USERLOGIN table...");
+                        while (reader__.Read())
+                        {
+
+                        }
+
+                        conn.CloseConnection();
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err);
+                    }
+
+
+
                 }
                 catch (Exception err)
                 {
                     Console.WriteLine(err);
                 }
-                
 
-                
             }
-            catch (Exception err)
-            {
-                Console.WriteLine(err);
-            }
-
-            
-
 
         }
     }

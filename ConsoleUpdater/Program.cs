@@ -20,16 +20,16 @@ namespace ConsoleUpdater
                     switch (args[i])
                     {
                         case "-u":
+                            Console.WriteLine($"Username : '{args[i + 1]}'");
                             us.Username = args[i+1];
                             break;
                         case "-p":
+                            Console.WriteLine($"Password : '{args[i + 1]}'");
                             us.Password = args[i + 1];
                             break;
                         case "-a":
+                            Console.WriteLine($"Age : '{args[i + 1]}'");
                             us.Age = args[i + 1];
-                            break;
-                        default:
-                            Console.WriteLine("Default");
                             break;
                     }
                 }
