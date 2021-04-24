@@ -13,6 +13,9 @@
         "packagesPath": "C:\\Users\\czemb\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\ConsoleUpdater\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\czemb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

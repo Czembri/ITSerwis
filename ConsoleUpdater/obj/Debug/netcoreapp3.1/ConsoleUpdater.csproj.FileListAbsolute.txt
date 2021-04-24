@@ -57,3 +57,4 @@ C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreap
 C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\obj\Debug\netcoreapp3.1\ConsoleUpdater.csprojAssemblyReference.cache
