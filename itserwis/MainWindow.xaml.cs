@@ -20,6 +20,7 @@ using System.Security.Cryptography;
 namespace ItSerwis_Merge_v2
 
 {
+
     public partial class MainWindow : Window
     {
         public bool checker;
@@ -56,9 +57,10 @@ namespace ItSerwis_Merge_v2
         {
             checker = false;
             var newForm = new Program();
+            var enc = new Encryptor();
 
-            string encrLogin = EncryptData(Login.Text);
-            string encrPass = EncryptData(Password.Password.ToString());
+            string encrLogin = enc.EncryptData(Login.Text);
+            string encrPass = enc.EncryptData(Password.Password.ToString());
 
 
             Session session = new Session();
@@ -109,38 +111,6 @@ namespace ItSerwis_Merge_v2
 
 
         }
-
-
-
-        /// <summary>
-        /// method that encrypts user login and password - encrypted data is stored in database
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private string EncryptData(string data)
-        {
-            log.Info("Encrypting user's login and password...");
-
-            MD5 md5Hash = MD5.Create();
-
-            byte[] HashedData = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(data));
-
-            StringBuilder sBuilder = new StringBuilder();
-
-            for (int i = 0; i < HashedData.Length; i++)
-            {
-                sBuilder.Append(HashedData[i].ToString("x2"));
-            }
-
-
-            var encrypted = sBuilder.ToString();
-
-            log.Info("Data encrypted.");
-            return encrypted;
-
-        }
-
-
     }
 }
 

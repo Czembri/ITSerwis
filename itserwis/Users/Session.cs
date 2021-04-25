@@ -8,10 +8,9 @@ using System.Windows;
 
 namespace ItSerwis_Merge_v2
 {
-    class Session
+    class Session : ConnectDB
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        ConnectDB conn = new ConnectDB();
 
         /// <summary>
         /// method that creates login session
@@ -20,14 +19,14 @@ namespace ItSerwis_Merge_v2
         /// <param name="password"></param>
         public void CreateSession(string username, string password)
         {
-            conn.ConnectToDatabase();
+            ConnectToDatabase();
 
             Guid obj = Guid.NewGuid();
             var sessionnumber = obj.ToString();
             try
             {
                 var sql = $"INSERT INTO SESSION VALUES (NULL, (SELECT FIRSTNAME FROM USERDATA WHERE ID = (SELECT USERID FROM USERLOGIN WHERE LOGINHASH='{username}' and PASSWORDHASH='{password}')), (SELECT USERID FROM USERLOGIN WHERE LOGINHASH='{username}' and PASSWORDHASH='{password}'), 0, '{sessionnumber}')";
-                var cmd = new MySqlCommand(sql, conn.conn);
+                var cmd = new MySqlCommand(sql, conn);
 
                 MySqlDataReader reader;
 
@@ -37,7 +36,7 @@ namespace ItSerwis_Merge_v2
                 {
 
                 }
-                conn.CloseConnection();
+                CloseConnection();
             }
             catch (Exception err)
             {
@@ -53,12 +52,12 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         public void CloseSession()
         {
-            conn.ConnectToDatabase();
+            ConnectToDatabase();
 
             try
             {
                 var sql = $"Update session set status=1 where status=0";
-                var cmd = new MySqlCommand(sql, conn.conn);
+                var cmd = new MySqlCommand(sql, conn);
 
                 MySqlDataReader reader;
 
@@ -77,7 +76,7 @@ namespace ItSerwis_Merge_v2
                 log.Error($"Error occured: [{err.Message}]");
 
             }
-            conn.CloseConnection();
+            CloseConnection();
         }
 
 
@@ -87,12 +86,12 @@ namespace ItSerwis_Merge_v2
         {
             var isClosed = false;
 
-            conn.ConnectToDatabase();
+            ConnectToDatabase();
 
             try
             {
                 var stm = $"SELECT STATUS FROM SESSION WHERE STATUS=0";
-                var cmd = new MySqlCommand(stm, conn.conn);
+                var cmd = new MySqlCommand(stm, conn);
 
                 MySqlDataReader reader;
 
@@ -100,14 +99,14 @@ namespace ItSerwis_Merge_v2
 
                 if (reader.HasRows)
                 {
-                    conn.CloseConnection();
+                    CloseConnection();
                     var stm2 = $"UPDATE SESSION SET STATUS=1 WHERE STATUS=0";
-                    var cmd2 = new MySqlCommand(stm2, conn.conn);
+                    var cmd2 = new MySqlCommand(stm2, conn);
 
                     MySqlDataReader reader2;
                     try
                     {
-                        conn.ConnectToDatabase();
+                        ConnectToDatabase();
                     }
                     catch (Exception err)
                     {
@@ -132,7 +131,7 @@ namespace ItSerwis_Merge_v2
                         finally
                         {
                             isClosed = true;
-                            conn.CloseConnection();
+                            CloseConnection();
                         }
 
                     }

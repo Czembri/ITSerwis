@@ -1,0 +1,97 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\ConsoleUpdater\\ConsoleUpdater.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\ConsoleUpdater\\ConsoleUpdater.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\ConsoleUpdater\\ConsoleUpdater.csproj",
+        "projectName": "ConsoleUpdater",
+        "projectPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\ConsoleUpdater\\ConsoleUpdater.csproj",
+        "packagesPath": "C:\\Users\\czemb\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\ConsoleUpdater\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\czemb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj": {
+                "projectPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.22, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "PresentationFramework": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[2.0.12, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj",
+        "projectName": "ItSerwis_Merge_v2",
+        "projectPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj"
+      },
+      "frameworks": {
+        "net461": {}
+      }
+    }
+  }
+}

@@ -41,9 +41,10 @@ namespace ItSerwis_Merge_v2
     }
         // init MySQL conn
 
-    public class ConnectDB
+
+    public abstract class ConnectDB
         {
-            internal MySqlConnection conn = new MySqlConnection(DatabaseConnectionString());
+            public MySqlConnection conn = new MySqlConnection(DatabaseConnectionString());
             private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
@@ -94,8 +95,7 @@ namespace ItSerwis_Merge_v2
 
         }
 
-
-    }
+}
 
 
 

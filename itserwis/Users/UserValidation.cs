@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace ItSerwis_Merge_v2
 {
-    class UserValidation
+    class UserValidation : ConnectDB
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        ConnectDB conn = new ConnectDB();
 
         /// <summary>
         /// validate users that login to application
@@ -22,16 +21,16 @@ namespace ItSerwis_Merge_v2
         {
 
 
-            conn.ConnectToDatabase();
+            ConnectToDatabase();
 
             var stm = $"SELECT LOGINHASH, PASSWORDHASH FROM USERLOGIN WHERE LOGINHASH='{encryptedLog}' AND PASSWORDHASH='{encryptedPass}'";
-            var cmd = new MySqlCommand(stm, conn.conn);
+            var cmd = new MySqlCommand(stm, conn);
 
             MySqlDataReader reader;
 
             reader = cmd.ExecuteReader();
 
-            bool checkIfLogged = conn.IfReaderHasRows(reader.HasRows);
+            bool checkIfLogged = IfReaderHasRows(reader.HasRows);
 
             return checkIfLogged;
         }
@@ -48,8 +47,8 @@ namespace ItSerwis_Merge_v2
         {
             string docID, firstName, lastName;
             string sql = "SELECT id, firstname, lastname from userdata where id = (select userid from session where status=0 order by 1 desc limit 1) order by 1 desc limit 1";
-            var cmd = new MySqlCommand(sql, conn.conn);
-            conn.ConnectToDatabase();
+            var cmd = new MySqlCommand(sql, conn);
+            ConnectToDatabase();
             var reader = cmd.ExecuteReader();
             reader.Read();
             docID = reader.GetValue(0).ToString();
@@ -63,7 +62,7 @@ namespace ItSerwis_Merge_v2
             };
 
 
-            conn.CloseConnection();
+            CloseConnection();
             return result;
         }
 
@@ -76,11 +75,11 @@ namespace ItSerwis_Merge_v2
         /// <returns></returns>
         public bool ValidateUser(int empID)
         {
-            conn.ConnectToDatabase();
+            ConnectToDatabase();
 
 
             var stm = $"select ID from USERDATA where ID={empID}";
-            var cmd = new MySqlCommand(stm, conn.conn);
+            var cmd = new MySqlCommand(stm, conn);
 
 
             MySqlDataReader reader;
@@ -88,7 +87,7 @@ namespace ItSerwis_Merge_v2
             reader = cmd.ExecuteReader();
 
 
-            bool checkIfValid = conn.IfReaderHasRows(reader.HasRows);
+            bool checkIfValid = IfReaderHasRows(reader.HasRows);
 
             return checkIfValid;
         }

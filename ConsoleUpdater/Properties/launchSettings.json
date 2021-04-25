@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleUpdater": {
+      "commandName": "Project",
+      "commandLineArgs": "-u ola9999 -p test"
+    }
+  }
+}

@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\itserwis",
+    "\\itserwisapi",
+    "\\itserwis\\Users",
+    "\\itserwis\\utils"
   ],
+  "SelectedNode": "\\itserwis\\ServiceDocuments",
   "PreviewInSolutionExplorer": false
 }
