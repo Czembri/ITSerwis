@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Documents;
 
 namespace ConsoleUpdater
 {
@@ -19,6 +18,14 @@ namespace ConsoleUpdater
                 {
                     switch (args[i])
                     {
+                        case "-f":
+                            Console.WriteLine($"Firstname : '{args[i + 1]}'");
+                            us.FirstName = args[i + 1];
+                            break;
+                        case "-l":
+                            Console.WriteLine($"Lastname : '{args[i + 1]}'");
+                            us.LastName = args[i + 1];
+                            break;
                         case "-u":
                             Console.WriteLine($"Username : '{args[i + 1]}'");
                             us.Username = args[i+1];
@@ -34,7 +41,7 @@ namespace ConsoleUpdater
                     }
                 }
 
-                us.InsertNewUserCommand();
+                us.InsertUser();
 
             }
         }
