@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConsoleUpdater
 {
-    public class UserModule 
+    public class UserModule : Encryptor
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -18,9 +18,8 @@ namespace ConsoleUpdater
 
         public void InsertUser()
         {
-            var enc = new Encryptor();
-            string encrLogin = enc.EncryptData(Username);
-            string encrPass = enc.EncryptData(Password);
+            string encrLogin = EncryptData(Username);
+            string encrPass = EncryptData(Password);
 
             using (var db = new DbContextClass())
             {

@@ -1,0 +1,5 @@
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Service\obj\Release\netcoreapp3.1\ItSerwis.Service.csprojAssemblyReference.cache
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Service\obj\Release\netcoreapp3.1\ItSerwis.Service.AssemblyInfoInputs.cache
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Service\obj\Release\netcoreapp3.1\ItSerwis.Service.AssemblyInfo.cs
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Service\obj\Release\netcoreapp3.1\ItSerwis.Service.csproj.CoreCompileInputs.cache
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Service\obj\Release\netcoreapp3.1\ItSerwis.Service.MvcApplicationPartsAssemblyInfo.cache

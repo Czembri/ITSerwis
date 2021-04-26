@@ -13,8 +13,8 @@ using static ItSerwis_Merge_v2.ConfigDatabase;
 
 namespace ItSerwis_Merge_v2
 {
-   
-    public class ServiceDocumentsAndDataSets : ConnectDB
+
+    public class ServiceDocumentsAndDataSets : ConnectDB, IServiceDocumentsAndDataSets
     {
 
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -30,7 +30,7 @@ namespace ItSerwis_Merge_v2
             return ItemsData;
         }
 
-     
+
 
         public struct ServiceDocumentOnRowClickValues
         {
@@ -205,8 +205,8 @@ namespace ItSerwis_Merge_v2
                 {
 
                 }
-                log.Info($"Adding client to CUSTOMERS table."+
-                    $"CLIENT: ['FIRSTNAME':'{customerName}',"+
+                log.Info($"Adding client to CUSTOMERS table." +
+                    $"CLIENT: ['FIRSTNAME':'{customerName}'," +
                     $"'LASTNAME':'{customerLastName}'," +
                     $"'ADDRESS':{customerAddress}");
                 CloseConnection();
@@ -220,29 +220,29 @@ namespace ItSerwis_Merge_v2
 
         public void DeleteServiceDocument(int id)
         {
-                ConnectToDatabase();
+            ConnectToDatabase();
 
-                try
+            try
+            {
+                var stm = $"DELETE FROM SERVICEDOCUMENT WHERE ID={id}";
+                var cmd = new MySqlCommand(stm, conn);
+
+                MySqlDataReader reader;
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    var stm = $"DELETE FROM SERVICEDOCUMENT WHERE ID={id}";
-                    var cmd = new MySqlCommand(stm, conn);
-
-                    MySqlDataReader reader;
-
-                    reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
                     log.Debug($"Row found: [{reader.HasRows}]");
-                    }
+                }
 
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                    log.Error($"Error occured: [{e.Message}]");
-                }
-            
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                log.Error($"Error occured: [{e.Message}]");
+            }
+
 
             CloseConnection();
         }

@@ -86,3 +86,4 @@ C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreap
 C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreapp3.1\Renci.SshNet.xml
 C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreapp3.1\K4os.Compression.LZ4.xml
 C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreapp3.1\K4os.Hash.xxHash.xml
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ConsoleUpdater\bin\Debug\netcoreapp3.1\Autofac.dll

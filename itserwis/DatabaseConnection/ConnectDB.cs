@@ -39,7 +39,7 @@ namespace ItSerwis_Merge_v2
 
         }
     }
-        // init MySQL conn
+    // init MySQL conn
 
 
     public abstract class ConnectDB

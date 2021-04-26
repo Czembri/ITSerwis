@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ItSerwis_Merge_v2
 {
-    public class Encryptor
+    public class Encryptor : IEncryptor
     {
         /// <summary>
         /// method that encrypts user login and password - encrypted data is stored in database

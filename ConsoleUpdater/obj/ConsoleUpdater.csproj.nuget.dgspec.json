@@ -50,6 +50,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.5, )"
@@ -75,12 +79,31 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[3.1.10, 3.1.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     },
@@ -142,16 +165,29 @@
           "warn": true,
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
       }
     },
     "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj": {
       "restore": {
         "projectUniqueName": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj",
         "projectName": "ItSerwis_Merge_v2",
-        "projectPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj"
-      },
-      "frameworks": {
-        "net461": {}
+        "projectPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\ItSerwis_Merge_v2.csproj",
+        "packagesPath": "C:\\Users\\czemb\\.nuget\\packages\\",
+        "projectStyle": "PackagesConfig",
+        "configFilePaths": [
+          "C:\\Users\\czemb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "packagesConfigPath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\itserwis\\packages.config"
       }
     }
   }

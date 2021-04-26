@@ -59,6 +59,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=6.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>packages\Autofac.6.2.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -83,6 +86,9 @@
     <Reference Include="log4net, Version=2.0.9.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>packages\log4net.2.0.9\lib\net45\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.21.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.21\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
@@ -94,25 +100,31 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
@@ -139,92 +151,100 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Clients\Clients.xaml.cs">
+    <Compile Include="Utils\ContainerConfig.cs" />
+    <Compile Include="Views\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnection\ConnectDB.cs" />
-    <Compile Include="Clients\CreateClient.xaml.cs">
+    <Compile Include="Views\CreateClient.xaml.cs">
       <DependentUpon>CreateClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServiceDocuments\CreatePDF.cs" />
+    <Compile Include="Utils\ICreatePDF.cs" />
+    <Compile Include="Utils\IServiceDocumentsAndDataSets.cs" />
     <Compile Include="ServiceDocuments\ServiceDocumentsAndDataSets.cs" />
-    <Compile Include="ServiceDocuments\DocumentsFilter.xaml.cs">
+    <Compile Include="Views\DocumentsFilter.xaml.cs">
       <DependentUpon>DocumentsFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Items\item.xaml.cs">
+    <Compile Include="Views\IClients.cs" />
+    <Compile Include="Views\ICreateClient.cs" />
+    <Compile Include="Views\IDocumentsFilter.cs" />
+    <Compile Include="Views\Iitem.cs" />
+    <Compile Include="Views\IMainWindow.cs" />
+    <Compile Include="Views\IProgram.cs" />
+    <Compile Include="Views\IServiceDocumentsView.cs" />
+    <Compile Include="Views\ISerwisClients.cs" />
+    <Compile Include="Views\IShortServiceDocument.cs" />
+    <Compile Include="Views\item.xaml.cs">
       <DependentUpon>item.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogHelper.cs" />
-    <Compile Include="Clients\ServiceClients.xaml.cs">
+    <Compile Include="Views\IUsers.cs" />
+    <Compile Include="Views\ServiceClients.xaml.cs">
       <DependentUpon>ServiceClients.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ServiceDocuments\ServiceDocumentsView.xaml.cs">
+    <Compile Include="Views\ServiceDocumentsView.xaml.cs">
       <DependentUpon>ServiceDocumentsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="utils\Encryptor.cs" />
+    <Compile Include="Utils\ISession.cs" />
+    <Compile Include="Utils\IUserValidation.cs" />
+    <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="Users\Session.cs" />
-    <Compile Include="ServiceDocuments\ShortServiceDocument.xaml.cs">
+    <Compile Include="Views\ShortServiceDocument.xaml.cs">
       <DependentUpon>ShortServiceDocument.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Users\Users.xaml.cs">
+    <Compile Include="Views\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
     <Compile Include="Users\UserValidation.cs" />
-    <Page Include="Clients\Clients.xaml">
+    <Compile Include="Utils\IEncryptor.cs" />
+    <Page Include="Views\Clients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Clients\CreateClient.xaml">
+    <Page Include="Views\CreateClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ServiceDocuments\DocumentsFilter.xaml">
+    <Page Include="Views\DocumentsFilter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Items\item.xaml">
+    <Page Include="Views\item.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Program.xaml">
+    <Page Include="Views\Program.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Clients\ServiceClients.xaml">
+    <Page Include="Views\ServiceClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ServiceDocuments\ServiceDocumentsView.xaml">
+    <Page Include="Views\ServiceDocumentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ServiceDocuments\ShortServiceDocument.xaml">
+    <Page Include="Views\ShortServiceDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Users\Users.xaml">
+    <Page Include="Views\Users.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.xaml.cs">
+    <Compile Include="Views\Program.xaml.cs">
       <DependentUpon>Program.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -259,7 +279,9 @@
     <Resource Include="Icons\Icons8-Windows-8-Very-Basic-Services.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DataTypes\" />
     <Folder Include="Images\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SQL\CATEGORY.SQL" />

@@ -7,7 +7,7 @@ using iTextSharp.text.pdf.parser;
 
 namespace ItSerwis_Merge_v2
 {
-    public class CreatePDF
+    public class CreatePDF : ICreatePDF
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger();
 

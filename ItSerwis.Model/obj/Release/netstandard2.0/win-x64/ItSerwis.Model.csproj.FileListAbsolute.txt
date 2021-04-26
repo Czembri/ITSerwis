@@ -1,0 +1,13 @@
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\ItSerwis.Model.deps.json
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\ItSerwis.Model.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\ItSerwis.Model.pdb
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\System.ComponentModel.DataAnnotations.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\System.Configuration.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\System.Security.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\obj\Release\netstandard2.0\win-x64\ItSerwis.Model.csprojAssemblyReference.cache
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\obj\Release\netstandard2.0\win-x64\ItSerwis.Model.AssemblyInfoInputs.cache
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\obj\Release\netstandard2.0\win-x64\ItSerwis.Model.AssemblyInfo.cs
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\obj\Release\netstandard2.0\win-x64\ItSerwis.Model.csproj.CoreCompileInputs.cache
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\obj\Release\netstandard2.0\win-x64\ItSerwis.Model.csproj.CopyComplete
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\obj\Release\netstandard2.0\win-x64\ItSerwis.Model.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\obj\Release\netstandard2.0\win-x64\ItSerwis.Model.pdb

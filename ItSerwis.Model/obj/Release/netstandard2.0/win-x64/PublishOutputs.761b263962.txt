@@ -1,0 +1,6 @@
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\publish\ItSerwis.Model.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\publish\ItSerwis.Model.deps.json
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\publish\ItSerwis.Model.pdb
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\publish\System.ComponentModel.DataAnnotations.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\publish\System.Configuration.dll
+C:\Users\czemb\OneDrive\Desktop\repo\ITSerwis\ItSerwis.Model\bin\Release\netstandard2.0\win-x64\publish\System.Security.dll
