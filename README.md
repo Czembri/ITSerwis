@@ -1,5 +1,5 @@
 # ItSerwis_Merge
-<i>Windows application for it service store managment</i>
+<i>Windows application for it service store managment V1</i>
 
 * Store all your customers, orders, articles in one place thanks to database connection, that ensures a lot of free space :+1:
 
