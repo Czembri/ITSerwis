@@ -19,9 +19,32 @@ namespace ItSerwis_Merge_v2
     /// </summary>
     public partial class CreateClient : Window
     {
+        private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public CreateClient()
         {
             InitializeComponent();
+        }
+
+        private void SaveClient(object sender, EventArgs e)
+        {
+            log.Debug($"Invoking: {sender}");
+
+            ClientsEditor ce = new ClientsEditor();
+
+            try
+            {
+                ce.InsertIntoClients(name.Text, lastname.Text, address.Text, city.Text, voivodeship.Text, postcode.Text, country.Text, phone.Text, email.Text, nip.Text, accno.Text);
+            }
+            catch (Exception err)
+            {
+                log.Error($"Could not save client to database.\nError: [{err.Message}]");
+            }
+
+            finally
+            {
+                MessageBox.Show("Klient został zapisany!");
+            }
+
         }
     }
 }

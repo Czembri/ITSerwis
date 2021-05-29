@@ -5,8 +5,149 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ItSerwis_Merge_v2"
         mc:Ignorable="d"
-        Title="CreateClient" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="CreateClient" Height="430" Width="779">
+    <StackPanel>
+        <TextBlock  HorizontalAlignment="Center" Text="Dodaj klienta" FontSize="20" FontStyle="Oblique"/>
+        <Grid Width="800" Height="200" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel  Grid.Row="1" Grid.Column="0" >
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=name}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Imię: " Width="100" FontSize="18"/>
+                            <TextBox x:Name="name" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="2" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=lastname}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Nazwisko: " Width="100" FontSize="18"/>
+                            <TextBox x:Name="lastname" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="3" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=address}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Adres: " Width="100" FontSize="18"/>
+                            <TextBox x:Name="address" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="1" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=city}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Miasto: " Width="150" FontSize="18"/>
+                            <TextBox x:Name="city" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="2" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=voivodeship}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Województwo: " Width="150" FontSize="18"/>
+                            <TextBox x:Name="voivodeship" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="3" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=country}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Kraj: " Width="150" FontSize="18"/>
+                            <TextBox x:Name="country" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="4" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=postcode}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Kod pocztowy: " Width="150" FontSize="18"/>
+                            <TextBox x:Name="postcode" Padding="3"  Background="#eee" Width="200" BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackPanel  Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=phone}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Telefon: " Width="100" FontSize="18"/>
+                            <TextBox x:Name="phone" Padding="3"  Background="#eee" Width="200"  BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=email}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Email: " Width="100" FontSize="18"/>
+                            <TextBox x:Name="email" Padding="3"  Background="#eee" Width="200"  BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=nip}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Nip: " Width="100" FontSize="18"/>
+                            <TextBox x:Name="nip" Padding="3"  Background="#eee" Width="200"  BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Row="4">
+                <StackPanel Orientation="Horizontal">
+                    <Label Target="{Binding ElementName=accno}">
+                        <StackPanel Orientation="Horizontal">
+                            <AccessText Text="Numer konta: " Width="120" FontSize="18"/>
+                            <TextBox x:Name="accno" Padding="3"  Background="#eee" Width="500"  BorderBrush="#a99ddd" />
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Button Click="SaveClient" x:Name="save" Height="30" Grid.Row="5" Content="Zapisz"  Width="80"  HorizontalAlignment="right" Margin="10 0"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </Window>

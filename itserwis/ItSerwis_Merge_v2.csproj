@@ -146,6 +146,7 @@
     <Compile Include="Clients\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Clients\ClientsEditor.cs" />
     <Compile Include="DatabaseConnection\ConnectDB.cs" />
     <Compile Include="Clients\CreateClient.xaml.cs">
       <DependentUpon>CreateClient.xaml</DependentUpon>
