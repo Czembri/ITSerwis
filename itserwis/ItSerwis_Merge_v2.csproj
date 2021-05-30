@@ -147,6 +147,7 @@
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clients\ClientsEditor.cs" />
+    <Compile Include="consts\Vars.cs" />
     <Compile Include="DatabaseConnection\ConnectDB.cs" />
     <Compile Include="Clients\CreateClient.xaml.cs">
       <DependentUpon>CreateClient.xaml</DependentUpon>
@@ -166,6 +167,7 @@
     <Compile Include="ServiceDocuments\ServiceDocumentsView.xaml.cs">
       <DependentUpon>ServiceDocumentsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="utils\DocumentName.cs" />
     <Compile Include="utils\Encryptor.cs" />
     <Compile Include="Users\Session.cs" />
     <Compile Include="ServiceDocuments\ShortServiceDocument.xaml.cs">

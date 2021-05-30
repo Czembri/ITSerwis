@@ -125,6 +125,7 @@ namespace ItSerwis_Merge_v2
                     $"'EMPLOYEENAME':'{empName}', 'EMPLOYEESURNAME':'{empLastName}', 'EMPLOYEEID':'{empNum}'" +
                     $"'DEVICETYPE':'{devType}', 'DEVICEBRAND':'{devBrand}', 'DEVICEMODEL':'{devModel}', 'DESCRIPTION':'{descr}'");
                 CloseConnection();
+                MessageBox.Show("Dokument został zaktualizowany");
             }
             catch (Exception err)
             {

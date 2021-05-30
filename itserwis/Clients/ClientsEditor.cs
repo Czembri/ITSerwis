@@ -35,6 +35,7 @@ namespace ItSerwis_Merge_v2
                     $"'LASTNAME':'{customerLastName}'," +
                     $"'ADDRESS':{customerAddress}");
                 CloseConnection();
+                MessageBox.Show("Klient został zapisany!");
             }
             catch (Exception err)
             {

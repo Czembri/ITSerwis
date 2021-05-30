@@ -82,13 +82,6 @@ namespace ItSerwis_Merge_v2
             {
                 log.Error($"Could not update ServiceDocument: ['ID':'{docID}']\nError: [{err.Message}]");
             }
-
-            finally
-            {
-                MessageBox.Show("Dokument został zaktualizowany");
-            }
-
-
         }
 
 
@@ -161,8 +154,6 @@ namespace ItSerwis_Merge_v2
         /// <param name="e"></param>
         private void GeneratePdfAsync(object sender, EventArgs e)
         {
-            
-            string chars = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var now = GetDateString();
             var customerName = name.Text.ToString();
             var customerLastName = lastname.Text.ToString();
@@ -176,34 +167,13 @@ namespace ItSerwis_Merge_v2
             var deviceModel = model.Text.ToString();
             var descr = description.Text.ToString();
 
-
-            Random rdNum = new Random();
-
-            // variables for randomNumber string - inserted to column documentnumber
-            int rand1 = rdNum.Next(1, 100);
-            int rand2 = rdNum.Next(1, 100);
-            int rand3 = rdNum.Next(1, 100);
-
-            int randChar1 = rdNum.Next(chars.Length - 1);
-            char char1 = chars[randChar1];
-
-            int randChar2 = rdNum.Next(chars.Length - 1);
-            char char2 = chars[randChar2];
-
-            int randChar3 = rdNum.Next(chars.Length - 1);
-            char char3 = chars[randChar3];
-
-            string randomNumber = $"NR{rand1}{rand2}{rand3}-{char1}{char2}{char3}";
-            var lastDocID = Get_LastDocID();
-            var parsedDocumentID = Int32.Parse(lastDocID);
-
-            parsedDocumentID += 1;
-
-            var documentInternalID = $"ITSD/{now}/{parsedDocumentID}/{parsedEmpNum}/{randomNumber}";
+            DocumentName n = new DocumentName(parsedEmpNum);
+            var documentInternalID = n.NameDocument();
 
             try
             {
                 InsertData(now, customerName, customerLastName, customerAddr, employeeName, employeeLastName, parsedEmpNum, deviceType, deviceBrand, deviceModel, descr, documentInternalID);
+                MessageBox.Show($"Dokument został dodany pod numerem: {documentInternalID}");
             }
             catch (Exception err)
             {
@@ -283,7 +253,7 @@ namespace ItSerwis_Merge_v2
         /// </summary>
         /// <returns></returns>
 
-        private string Get_LastDocID()
+        public string Get_LastDocID()
         {
             ServiceDocumentsAndDataSets conndb = new ServiceDocumentsAndDataSets();
             var lastDocId = conndb.GetLastDocumentID();

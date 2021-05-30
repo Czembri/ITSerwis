@@ -40,11 +40,6 @@ namespace ItSerwis_Merge_v2
                 log.Error($"Could not save client to database.\nError: [{err.Message}]");
             }
 
-            finally
-            {
-                MessageBox.Show("Klient został zapisany!");
-            }
-
         }
     }
 }
