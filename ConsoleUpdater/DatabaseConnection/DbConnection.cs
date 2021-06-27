@@ -10,7 +10,7 @@ namespace ConsoleUpdater
 {
 
 
-    public class DbConnection : ConnectDB
+    public class DbConnection : DatabaseConnClass
     {
 
         public new void ConnectToDatabase() // opens database connection

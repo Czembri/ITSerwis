@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PK8VwPXgMSiyII4q3jAj49hNucG46ZY0dnXoZFSiAZlv/8z8D0PuVm7pNylJYmj3KrLdtiDKolD3FEkvr3a+fw==",
+  "dgSpecHash": "+pz+VCozAAmk///lc4MCnZU2vLdC+LaQ1MMfOecRLeqT2JAFLEwBv0Od7wuaOHkq0fx5vW6JVOPsKzqn3TcA8A==",
   "success": true,
   "projectFilePath": "C:\\Users\\czemb\\OneDrive\\Desktop\\repo\\ITSerwis\\ConsoleUpdater\\ConsoleUpdater.csproj",
   "expectedPackageFiles": [
@@ -32,7 +32,6 @@
     "C:\\Users\\czemb\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
     "C:\\Users\\czemb\\.nuget\\packages\\npgsql\\5.0.2\\npgsql.5.0.2.nupkg.sha512",
     "C:\\Users\\czemb\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.2\\npgsql.entityframeworkcore.postgresql.5.0.2.nupkg.sha512",
-    "C:\\Users\\czemb\\.nuget\\packages\\presentationframework\\4.6.0\\presentationframework.4.6.0.nupkg.sha512",
     "C:\\Users\\czemb\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Users\\czemb\\.nuget\\packages\\runtime.native.system.io.compression\\4.1.0\\runtime.native.system.io.compression.4.1.0.nupkg.sha512",
     "C:\\Users\\czemb\\.nuget\\packages\\runtime.native.system.net.http\\4.0.1\\runtime.native.system.net.http.4.0.1.nupkg.sha512",
@@ -113,16 +112,5 @@
     "C:\\Users\\czemb\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
     "C:\\Users\\czemb\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „PresentationFramework 4.6.0” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8” zamiast platformy docelowej projektu „.NETCoreApp,Version=v3.1”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
-      "libraryId": "PresentationFramework",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }

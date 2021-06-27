@@ -410,15 +410,6 @@
           "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
         }
       },
-      "PresentationFramework/4.6.0": {
-        "type": "package",
-        "compile": {
-          "lib/PresentationFramework.dll": {}
-        },
-        "runtime": {
-          "lib/PresentationFramework.dll": {}
-        }
-      },
       "runtime.native.System/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -1784,8 +1775,25 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "DatabaseConnector/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "MySql.Data": "8.0.21",
+          "log4net": "2.0.12"
+        },
+        "compile": {
+          "bin/placeholder/DatabaseConnector.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DatabaseConnector.dll": {}
+        }
+      },
       "ItSerwis_Merge_v2/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "DatabaseConnector": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/ItSerwis_Merge_v2.dll": {}
         },
@@ -2407,18 +2415,6 @@
         "npgsql.entityframeworkcore.postgresql.5.0.2.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
-      ]
-    },
-    "PresentationFramework/4.6.0": {
-      "sha512": "37FpU6XcB1Hgr5X03MgUOxvzWLJYKJP72J3g5hnZHi/DXsTxpJEu4brCGW+TmplVWfntuysO/uRcZcPS9YK0Bw==",
-      "type": "package",
-      "path": "presentationframework/4.6.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/PresentationFramework.dll",
-        "presentationframework.4.6.0.nupkg.sha512",
-        "presentationframework.nuspec"
       ]
     },
     "runtime.native.System/4.0.0": {
@@ -6296,6 +6292,11 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
+    "DatabaseConnector/1.0.0": {
+      "type": "project",
+      "path": "../DatabaseConnector/DatabaseConnector.csproj",
+      "msbuildProject": "../DatabaseConnector/DatabaseConnector.csproj"
+    },
     "ItSerwis_Merge_v2/1.0.0": {
       "type": "project",
       "path": "../itserwis/ItSerwis_Merge_v2.csproj",
@@ -6307,7 +6308,6 @@
       "ItSerwis_Merge_v2 >= 1.0.0",
       "MySql.Data >= 8.0.22",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.2",
-      "PresentationFramework >= 4.6.0",
       "log4net >= 2.0.12"
     ]
   },
@@ -6366,10 +6366,6 @@
             "target": "Package",
             "version": "[5.0.2, )"
           },
-          "PresentationFramework": {
-            "target": "Package",
-            "version": "[4.6.0, )"
-          },
           "log4net": {
             "target": "Package",
             "version": "[2.0.12, )"
@@ -6393,17 +6389,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Pakiet „PresentationFramework 4.6.0” został przywrócony przy użyciu elementu „.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8” zamiast platformy docelowej projektu „.NETCoreApp,Version=v3.1”. Ten pakiet może nie być w pełni kompatybilny z Twoim projektem.",
-      "libraryId": "PresentationFramework",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }

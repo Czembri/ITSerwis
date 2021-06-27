@@ -11,7 +11,6 @@
           "ItSerwis_Merge_v2": "1.0.0",
           "MySql.Data": "8.0.22",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.2",
-          "PresentationFramework": "4.6.0",
           "log4net": "2.0.12"
         },
         "runtime": {
@@ -371,14 +370,6 @@
           "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
             "assemblyVersion": "5.0.2.0",
             "fileVersion": "5.0.2.0"
-          }
-        }
-      },
-      "PresentationFramework/4.6.0": {
-        "runtime": {
-          "lib/PresentationFramework.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.6.81.0"
           }
         }
       },
@@ -1228,9 +1219,29 @@
           }
         }
       },
+      "DatabaseConnector/1.0.0": {
+        "dependencies": {
+          "MySql.Data": "8.0.22",
+          "log4net": "2.0.12"
+        },
+        "runtime": {
+          "DatabaseConnector.dll": {}
+        }
+      },
       "ItSerwis_Merge_v2/1.0.0": {
+        "dependencies": {
+          "DatabaseConnector": "1.0.0"
+        },
         "runtime": {
           "ItSerwis_Merge_v2.exe": {}
+        }
+      },
+      "PresentationFramework/4.0.0.0": {
+        "runtime": {
+          "PresentationFramework.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.81.0"
+          }
         }
       },
       "itextsharp/5.5.13.2": {
@@ -1444,13 +1455,6 @@
       "sha512": "sha512-xdhI0Y1uMxEUbH00T9kLk5m4JN8b4bAHv8fX+nU3GzdEsIgI0k0tKM4ZJ/RjkvGE1L5h4Y+oBZNNqzgetOTBtg==",
       "path": "npgsql.entityframeworkcore.postgresql/5.0.2",
       "hashPath": "npgsql.entityframeworkcore.postgresql.5.0.2.nupkg.sha512"
-    },
-    "PresentationFramework/4.6.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-37FpU6XcB1Hgr5X03MgUOxvzWLJYKJP72J3g5hnZHi/DXsTxpJEu4brCGW+TmplVWfntuysO/uRcZcPS9YK0Bw==",
-      "path": "presentationframework/4.6.0",
-      "hashPath": "presentationframework.4.6.0.nupkg.sha512"
     },
     "runtime.native.System/4.0.0": {
       "type": "package",
@@ -2005,8 +2009,18 @@
       "path": "system.xml.xpath.xmldocument/4.0.1",
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
+    "DatabaseConnector/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "ItSerwis_Merge_v2/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PresentationFramework/4.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

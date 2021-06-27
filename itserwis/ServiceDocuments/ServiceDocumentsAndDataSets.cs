@@ -8,13 +8,12 @@ using System.Windows;
 using System.Xml;
 using System.IO;
 using System.Reflection;
-using static ItSerwis_Merge_v2.ConfigDatabase;
 
 
 namespace ItSerwis_Merge_v2
 {
    
-    public class ServiceDocumentsAndDataSets : ConnectDB
+    public class ServiceDocumentsAndDataSets : DatabaseConnClass
     {
 
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);

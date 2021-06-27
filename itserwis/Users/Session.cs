@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace ItSerwis_Merge_v2
 {
-    class Session : ConnectDB
+    class Session : DatabaseConnClass
     {
         private static readonly log4net.ILog log = LogHelper.GetLogger(); //log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 

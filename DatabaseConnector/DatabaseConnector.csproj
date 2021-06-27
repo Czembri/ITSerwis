@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="SQL\CATEGORY.SQL" />
+    <None Remove="SQL\create_customer.sql" />
+    <None Remove="SQL\create_item.sql" />
+    <None Remove="SQL\create_tables_serwis.sql" />
+    <None Remove="SQL\ITEMTYPE.SQL" />
+    <None Remove="SQL\LOCATION.SQL" />
+    <None Remove="SQL\servicedocument.sql" />
+    <None Remove="SQL\subcat.sql" />
+    <None Remove="SQL\taxrate.sql" />
+    <None Remove="SQL\vendor.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SQL\CATEGORY.SQL" />
+    <Content Include="SQL\create_customer.sql" />
+    <Content Include="SQL\create_item.sql" />
+    <Content Include="SQL\create_tables_serwis.sql" />
+    <Content Include="SQL\ITEMTYPE.SQL" />
+    <Content Include="SQL\LOCATION.SQL" />
+    <Content Include="SQL\servicedocument.sql" />
+    <Content Include="SQL\subcat.sql" />
+    <Content Include="SQL\taxrate.sql" />
+    <Content Include="SQL\vendor.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="MySql.Data" Version="8.0.21" />
+  </ItemGroup>
+
+</Project>

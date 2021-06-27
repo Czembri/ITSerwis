@@ -6,6 +6,10 @@ using System.Windows;
 using System.Reflection;
 using System.Net.Http;
 using System.Collections.Generic;
+using SelectPdf;
+using System.Net;
+using System.Text.Json;
+using System.Text;
 
 namespace ItSerwis_Merge_v2
 {
@@ -180,18 +184,59 @@ namespace ItSerwis_Merge_v2
                 MessageBox.Show($"Wystąpił błąd: {err.Message}");
                 log.Error($"Error while inserting data to database: [{err.Message}]");
             }
-            finally
-            {
-                log.Info($"Document - [{documentInternalID}] - as parsed and inserted to local database.");
-            }
 
             // Old methos of creating pdf (for now useless)
             //SendPostInfoAsync($"{parsedDocumentID}");
             //RunCmd($"D:/Temp/Itserwis/generate_pdf.py", $"{parsedDocumentID}");
 
             //new way of generating pdfs
-            var cPdf = new CreatePDF();
-            cPdf.create();
+            // create a new pdf document
+            try
+            {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:4333/api/createpdf/servicedocument");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    var ms = new MemoryStream();
+                    var writer = new Utf8JsonWriter(ms);
+
+                    writer.WriteStartObject();
+                    writer.WriteString("documentdate", now);
+                    writer.WriteString("clientname", $"{customerName} {customerLastName}");
+                    writer.WriteString("clientaddress", customerAddr);
+                    writer.WriteString("employeename", $"{employeeName} {employeeLastName}");
+                    writer.WriteString("employeenumber", empNum);
+                    writer.WriteString("devicetype", deviceType);
+                    writer.WriteString("devicebrand", deviceBrand);
+                    writer.WriteString("devicemodel", deviceModel);
+                    writer.WriteString("descr", descr);
+                    writer.WriteString("internaldocumentid", $"{now}-{customerName}_{customerLastName}");
+                    writer.WriteEndObject();
+                    writer.Flush();
+
+                    string json = Encoding.UTF8.GetString(ms.ToArray());
+                    streamWriter.Write(json);
+
+                    log.Debug($"Creating json POST request: [{json}]");
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                log.Debug(httpResponse);
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                }
+                log.Info($"Document [number: {documentInternalID}] saved as .pdf");
+                MessageBox.Show($"Dokument {now}-{customerName}_{customerLastName} został zapisany jako .pdf");
+
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Error while saving document {now}-{customerName}_{customerLastName} to .pdf");
+            }
+            
         }
 
         //private async System.Threading.Tasks.Task SendPostInfoAsync(string parsedDocumentID)

@@ -10,7 +10,7 @@ namespace ConsoleUpdater
         public string Password { get; set; }
         public string Age { get; set; } = "9999";
 
-        DbConnection conn = new DbConnection();
+        DatabaseConnClass conn = new DatabaseConnClass();
 
         public void InsertNewUserCommand()
         {
